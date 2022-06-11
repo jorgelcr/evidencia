@@ -1,0 +1,175 @@
+
+
+  <mat-sidenav-container fullscreen>
+
+    <!-- START SIDENAV (mat-sidenav ) -->
+    <mat-sidenav #sidenav mode="push" >
+
+      <mat-toolbar >
+
+        <img src="https://portal.ucm.cl//content/uploads/2019/01/logo_nuevo3.jpg" alt="">
+        <button mat-icon-button (click)="sidenav.toggle()">
+
+          <mat-icon>
+            close
+          </mat-icon>
+
+        </button>
+      </mat-toolbar>
+
+      <!-- START ITEM MENUSIDE (mat-nav-list LIST)-->
+      <mat-nav-list>
+
+        <!-- START FIRST DROP-DOWN MENU INICIO MENU LATERAL -->
+        <div class="border-bottom border-top ms-2" *ngFor="let item of menuFinal">
+          <a [routerLink]="[item.ruta]" mat-list-item (click)="sidenav.toggle()">
+            <mat-icon mat-list-icon class="mb-2 me-2 "><i class={{item.icono}}></i></mat-icon>
+            <span >{{item.titulo}}</span>
+          </a>
+       
+        <!-- END FIRST DROP-DOWN MENU -->
+
+        <!-- START MENUSIDE DROPDOWN -->
+        <div >        
+        <div >
+<!-- (click)="borrar2()" -->
+          <button  *ngIf="item.titulo && item.icono" class="w-menu h-button-menu border-top border-bottom" mat-button [matMenuTriggerFor]="menu">
+
+            <mat-icon class=" mb-2 me-2 ms-1" mat-list-icon><i class={{item.subicono}}></i></mat-icon>
+            <span> {{item.subtitulo}}</span>
+            <mat-icon mat-list-icon class="mb-2 ms-2 "><i class="fa-solid fa-angle-down"></i></mat-icon>
+          </button>
+        </div> 
+      
+          <mat-menu #menu="matMenu">
+
+            <div class="w-menu border-bottom" *ngFor="let item2 of item.submenu"
+               [routerLink]="[item2.ruta]" (click)="sidenav.toggle()">
+
+              <button mat-menu-item  >
+                <mat-icon mat-list-icon><i class={{item2.icono}}></i></mat-icon>
+                <span>{{item2.titulo}} </span>
+
+              </button>
+            </div>
+            
+
+          </mat-menu>
+          <div *ngIf="borrar == true">
+            <br><br><br><br><br><br>
+          </div>
+        
+      </div>
+        <!-- END MENUSIDE DROPDOWN -->
+
+
+        <!-- START SECOND DROP-DOWN MENU -->
+       
+        <div class="border-bottom" *ngFor="let item3 of item.submenufinal">
+
+          <a [routerLink]="[item3.ruta]" *ngIf="!item3.titulo3" mat-list-item (click)="sidenav.toggle()">
+            <mat-icon mat-list-icon class="me-2">{{item3.icono}}</mat-icon>
+            <span>{{item3.titulo2}}</span>
+
+          </a>
+
+        </div>
+        <span *ngFor="let item3 of item.submenufinal">{{item3.titulo3}}</span>
+      </div>
+        <!-- END SECOND DROP-DOWN MENU FIN MENU LATERAL-->
+
+        <!-- END MENUSIDE DROPDOWN (</mat-nav-list> LIST)-->
+      </mat-nav-list>
+
+      <!-- END SIDENAV (mat-sidenav ) -->
+    </mat-sidenav>
+
+    <!-- START MAT TOOLBAR -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <!-- class=" hidden-sidenav" -->
+        <mat-icon >
+          menu
+        </mat-icon>
+      </button>
+
+      <!-- START FULLMENU TOOLBAR -->
+
+      <div class="hidden-menu container-fluid d-flex justify-content-center text-center col-6 offset-2">
+      
+        <div *ngFor="let item of menuside3" class="">
+          <button class="border border-primary me-1 " [routerLink]="[item.ruta]" [routerLinkActive]="'active'"  mat-button>
+            <mat-icon mat-list-icon>{{item.icono}}</mat-icon>
+            <span>{{ item.titulo}}</span>
+          </button>
+        </div>
+
+
+        <!-- <div class="row col-5 bg-dark col-3">
+          <div *ngFor="let item of menuside3" class="col-3 me-5">
+            <button [routerLink]="[item.ruta]" class=" border border-primary" mat-button>
+              <mat-icon mat-list-icon>{{item.icono}}</mat-icon>
+              <span>{{ item.titulo}}</span>
+            </button>
+          </div>
+        </div> -->
+
+        <!-- START MENU TOOLBAR -->
+        <div *ngFor="let item of menuside2 ">
+
+          <button *ngIf="item.titulo" class=" border border-primary ms-1 me-1" mat-button
+            [matMenuTriggerFor]="belowMenu">
+            <mat-icon mat-list-icon>text_snippet</mat-icon>
+            <span > {{item.titulo}}</span>
+            <mat-icon mat-list-icon >{{item.icono}}</mat-icon>
+          </button>
+
+          <mat-menu #belowMenu="matMenu" yPosition="below">
+            <div *ngFor="let item of menuside2" [routerLink]="[item.subruta] ">
+
+              <button mat-menu-item>
+                <mat-icon mat-list-icon>{{item.subicono}}</mat-icon>
+                <span>{{item.subtitulo}}</span>
+
+              </button>
+
+            </div>
+          </mat-menu>
+
+        </div>
+        <!-- END MENU TOOLBAR -->
+
+        <div *ngFor="let item of menuside">
+          <button class="border border-primary me-1" [routerLink]="[item.ruta]" mat-button [routerLinkActive]="'active'">
+            <mat-icon mat-list-icon>{{item.icono}}</mat-icon>
+            <span >{{ item.titulo}}</span>
+          </button>
+        </div>
+
+
+
+      </div>
+
+      <!-- END FULLMENU TOOLBAR -->
+      <div class="container-md col-9 col-md-3">
+        <div class="row">
+          <div class="col-md-6 col-6">
+  
+        <button class="border border-primary " mat-button>Mi Perfil</button>
+      </div>
+      <div class="col-md-6 col-6">
+     
+        <button class="border border-primary " mat-button>Cerrar Sesion</button>
+      </div>
+    </div>
+  </div>
+  
+    </mat-toolbar>
+    <!-- END MAT TOOLBAR -->
+
+    <div class="p-2" >
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </mat-sidenav-container>

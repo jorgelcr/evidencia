@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row mt-2">
+      <div class="col-12 ">
+        <div class="card ">
+          <div class="card-body">
+            <h1 class="mb-5 fs-1">Unidades</h1>
+            <div class=" row col-9 mx-auto mb-4">
+              <div class="row">
+
+                <i class="fa-solid fa-circle-plus fs-1 text-primary col-auto cursor-pointer" (click)="openDialog()"  mat-button ></i>
+                  
+                <input class="fs-5 border-0 col border-bottom" type="text" placeholder="Buscar por Id" (keyup)="buscar(termino.value)" #termino >
+                   
+              </div>
+            </div>
+
+
+
+            <div class="my-custom-scrollbar border">
+              <table class="table table-bordered table-hover ">
+                <thead class="s bg-info ">
+                  <tr class=" text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class=" text-center align-middle">
+                  <tr  *ngFor="let item of listaUnidades; let i = index" >
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{item.codigo_unidad | uppercase}}</td>
+                    <td>{{item.nombre_unidad}}</td>
+                    <td>{{item.unidad_defecto | boolean}}</td>
+                    
+                    <td>
+                      <i class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye p-2"
+                         mat-button [routerLink]="['../credits', item.codigo_unidad]"  (click)="openDialog(item)"></i>
+                      <i (click)="borrarUnidades(item.codigo_unidad)" class="cursor-pointer text-primary fs-3 fa fa-solid text-danger fa-trash p-2"></i>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+              <div class="text-danger text-center fs-3">
+              <span *ngIf="estadoBusqueda === false" >Unidad no encontrada</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

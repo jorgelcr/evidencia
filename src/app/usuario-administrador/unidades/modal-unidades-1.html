@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>{{titulo}}</h2>
+<form (ngSubmit)="guardar()" [formGroup]="miFormulario">
+  
+<mat-dialog-content class="mat-typography abc" >
+  
+    <div class="mt-3">
+      
+        <span>Codigo Unidad</span>
+        <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
+        <input formControlName="codigo_unidad"  type="text"  class="form-control border-0 border-bottom"
+          placeholder="Ingrese Descripcion Unidad" uppercase  >
+          <span   *ngIf="campoNoEsValido('codigo_unidad')" class="form-text text-danger">
+            Codigo debe tener 3 numeros</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Nombre Unidad</span>
+          <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
+          <input formControlName="nombre_unidad" type="text" class="form-control border-0 border-bottom"
+            placeholder="Ingrese Nombre Unidad">
+            <span   *ngIf="campoNoEsValido('nombre_unidad')" class="form-text text-danger">
+              Nombre debe tener 3 letras</span>
+        </div>
+  
+        <div class="mt-1 col-5" *ngIf="estado==true">
+          <span>Estado</span>
+          <select class="form-select form-select-sm col-2">
+            <option selected>Activo</option>
+            <option value="1">Desactivado</option>
+          </select>
+        </div>
+       
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end"  class="mt-5">
+  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+  <button   type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button >Guardar</button>
+</mat-dialog-actions>
+<!-- [disabled]="miFormulario.invalid" -->
+</form>
+
+<!-- <span>VALID</span>
+<pre>{{ miFormulario.valid}}</pre>
+<span>PRISTINE</span>
+<pre>{{ miFormulario.pristine}}</pre>
+<span>TOUCHED</span>
+<pre>{{ miFormulario.touched}}</pre>
+<span>VALUE</span>
+<pre>{{ miFormulario.value}}</pre>
+ -->

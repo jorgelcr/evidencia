@@ -1,0 +1,70 @@
+<!-- align-items-center justify-content-center vh-100 centrar div -->
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12 ">
+      <div class="card ">
+        <div class="card-body">
+          <h1 class="mb-5 fs-1">Evidencias</h1>
+          <div class=" row col-11 mb-4">
+            <div class="col-md-6 mb-2">
+              <input class="fs-5 col-md-9 border-0 border-bottom" type="text" placeholder="Buscar por codigo">
+            </div>
+              <div class="col-auto mt-2">
+                <span class="fs-6"><strong>Filtro Por Estados: </strong> </span>
+              </div>
+                <div class="col-auto mb-1">
+                  <form action="/action_page.php" >
+                    <select class="estado" mat-button id="cars" name="cars">
+                      <option value="volvo">En Espera</option>
+                      <option value="saab">Aprobada</option>
+                      <option value="fiat">Rechazada</option>
+                    </select>
+                  </form>
+              </div>
+              
+
+           
+          </div>
+          <div class="my-custom-scrollbar ">
+            <table class="table table-bordered table-hover ">
+              <thead class="s bg-info ">
+                <tr class=" text-center">
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Unidad</th>
+                  <th scope="col">Criterio</th>
+                  <th scope="col">Proceso</th>
+                  <th scope="col">Registro</th>
+                  <th scope="col">Debilidad</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody class=" text-center align-middle">
+                <tr>
+                  <th scope="row">ARBIQ-GCA-C2</th>
+                  <td>Nombre 1</td>
+                  <td>Usuario 1</td>
+                  <td>Unidad 1</td>
+                  <td>Criterio 1</td>
+                  <td>Proceso 1</td>
+                  <td>Registro 1</td>
+                  <td>Debilidad 1</td>
+                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
+                      placeholder="En espera" readonly>
+                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
+                    <i class="text-danger fs-4 fa-regular fa-x"></i>
+                  </td>
+                  <td>
+                    <i [routerLink]="['../administrar-Evidencias']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

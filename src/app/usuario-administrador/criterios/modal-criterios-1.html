@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Crear Criterios</h2>
+
+<form (ngSubmit)="guardar()" [formGroup]="formularioCriterio">
+
+<mat-dialog-content class="mat-typography abc" >
+
+    <div class="modal-body col-12">
+        <span>Codigo Criterio</span>
+        <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
+        <input formControlName="codigo_criterios" type="text" class="form-control border-0 border-bottom" placeholder="Codigo Criterio">
+        <span   *ngIf="campoNoEsValido('codigo_criterios')" class="form-text text-danger">
+          Codigo debe tener 3 numeros</span>
+
+        <div class="mt-3">
+          <span>Nombre Criterio</span>
+          <input formControlName="nombre_criterios" type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Criterio">
+          <span   *ngIf="campoNoEsValido('nombre_criterios')" class="form-text text-danger">
+            Nombre debe tener 3 numeros</span>
+        </div>
+  
+        <div class="mt-3">
+          <span>Descripcion Criterio</span>
+          <input formControlName="descripcion_criterios" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Descripion Criterio">
+          <span   *ngIf="campoNoEsValido('descripcion_criterios')" class="form-text text-danger">
+            Descripcion debe tener 3 numeros</span>
+        </div>
+  
+      </div>
+  
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="mt-5">
+  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+  <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+</mat-dialog-actions>
+
+</form>
+
+<!-- <span>VALID</span>
+<pre>{{ formularioCriterio.valid}}</pre>
+<span>PRISTINE</span>
+<pre>{{ formularioCriterio.pristine}}</pre>
+<span>TOUCHED</span>
+<pre>{{ formularioCriterio.touched}}</pre>
+<span>VALUE</span>
+<pre>{{ formularioCriterio.value}}</pre>
+ -->

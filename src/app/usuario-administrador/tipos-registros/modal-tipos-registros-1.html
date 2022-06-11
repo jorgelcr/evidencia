@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Crear Tipos de Registros</h2>
+
+<mat-dialog-content class="mat-typography abc" >
+
+    <div class="modal-body col-12">
+        <span>Tipo Registro</span>
+        <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
+        <input type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Tipo Registro">
+
+      </div>
+  
+</mat-dialog-content>
+<mat-dialog-actions align="end" >
+  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions >

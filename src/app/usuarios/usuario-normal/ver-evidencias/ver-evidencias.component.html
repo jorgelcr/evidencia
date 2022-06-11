@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<body>
+  <h1 class="ms-5"><strong>Evidencias</strong></h1>
+
+  <div class="example-container mat-elevation-z8 mt-5 ">
+
+
+    <div class="row col-md-11 m-auto">
+
+      <div class="col-12 col-sm-5 col-md-6 ms-2 ">
+
+
+        <mat-form-field class="container" appearance="standard">
+          <mat-label>Filtrar por codigo</mat-label>
+          <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Ingrese Codigo" #input>
+        </mat-form-field>
+
+      </div>
+
+      <div class="estado-text col-md-4 ">
+        <span class="">Mostrar por estado: </span>
+
+        <div>
+
+          <form class=" col-md-2 ms-1 mb-1" action="/action_page.php">
+            <select class="estado" mat-button id="cars" name="cars">
+              <option value="volvo">En Espera</option>
+              <option value="saab">Aprobado</option>
+              <option value="fiat">Rechazado</option>
+            </select>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Codigo -->
+      <ng-container matColumnDef="codigo">
+        <th class="text-center border header-table " mat-header-cell *matHeaderCellDef> No.</th>
+        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+      </ng-container>
+
+      <!-- Name Envio -->
+      <ng-container matColumnDef="envio">
+        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Fecha Envio </th>
+        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.fecha_envio |  date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <!-- Weight Unidad -->
+      <ng-container matColumnDef="unidad">
+        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Unidad</th>
+        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.unidad | titlecase}} </td>
+      </ng-container>
+
+      <!-- Symbol Proceso -->
+      <ng-container matColumnDef="proceso">
+        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Proceso </th>
+        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.proceso | titlecase}} </td>
+      </ng-container>
+
+      <!-- Symbol Registro -->
+      <ng-container matColumnDef="registro">
+        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Registro </th>
+        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.registro | titlecase}} </td>
+      </ng-container>
+
+      <!-- Symbol Ambito -->
+      <ng-container matColumnDef="ambito">
+        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef>Ambito </th>
+        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.ambito | titlecase}} </td>
+      </ng-container>
+
+      <!-- Symbol Estado -->
+      <ng-container matColumnDef="estado">
+        <th class="text-center border header-table col-md-2 " mat-header-cell *matHeaderCellDef> Estado</th>
+        <td class="text-center border " mat-cell *matCellDef="let element">
+          <mat-icon class="ms-1  " ><i
+              class="fa fa-solid fa-question w-input  "></i></mat-icon>
+          <mat-icon class="ms-1 " ><i
+              class="fa fa-solid fa-question w-input"></i></mat-icon>
+          <mat-icon class="ms-1 text-success" ><i
+              class="fa fa-solid fa-user-check w-input"></i></mat-icon>
+          <mat-icon class="ms-1 text-success" ><i
+              class="fa fa-solid fa-user-check w-input"></i></mat-icon>
+          <mat-icon class="ms-1 text-danger" ><i
+              class="fa fa-solid fa-user-xmark w-input"></i></mat-icon>
+          <mat-icon class="ms-1 text-danger" ><i
+              class="fa fa-solid fa-user-xmark w-input"></i></mat-icon>
+
+        </td>
+      </ng-container>
+
+      <!-- Symbol Accion -->
+      <ng-container matColumnDef="accion">
+        <th class="text-center border header-table col-md-2" mat-header-cell *matHeaderCellDef>Accion</th>
+        <td class="text-center border" mat-cell *matCellDef="let element">
+
+          <mat-icon class="icon-pointer ms-2 text-primary" [routerLink]="['../crear-evidencia']"><i class="fa fa-solid fa-eye w-input"></i>
+          </mat-icon>
+          <mat-icon class="icon-pointer ms-2 " [routerLink]="['../crear-evidencia']"><i
+              class="fa fa-regular text-primary fa-pen-to-square w-input"></i></mat-icon>
+          <mat-icon class="icon-pointer ms-2" [routerLink]="['../crear-evidencia']"><i
+              class="fa fa-solid text-danger fa-trash w-input"></i></mat-icon>
+
+
+
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+</body>
+
+</html>

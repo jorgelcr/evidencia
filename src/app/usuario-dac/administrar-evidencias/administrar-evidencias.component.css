@@ -1,0 +1,18 @@
+
+.no-space-break{
+    white-space:nowrap;
+    margin-top: 2px;
+    
+  }
+
+  .redbar{
+    text-align: center;
+   border-image: none;
+   border-radius: 3px !important;
+   display: block !important;
+   width: 50px !important;
+   margin: auto;
+   margin-top: auto;
+   margin-left: 50px;
+     float: none;
+   }
