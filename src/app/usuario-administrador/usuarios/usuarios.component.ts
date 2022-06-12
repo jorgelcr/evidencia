@@ -89,6 +89,7 @@ console.log("Los datos guarados son: ",resp)
         this.formularioUsuario.reset();
       }, error => {
         Swal.fire('Error', "Error al eliminar la unidad", 'error');
+        Swal.fire('Error', "Error al ingresar el usuario", 'error');
       })
       
       /* console.log(this.miFormulario.value) */
