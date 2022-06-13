@@ -1,127 +1,85 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 
 <body>
-  <h1 class="ms-5"><strong>Evidencias</strong></h1>
-
-  <div class="example-container mat-elevation-z8 mt-5 ">
 
 
-    <div class="row col-md-11 m-auto">
+  <div class="container">
+    <div class="row mt-2">
+      <div class="col-12 ">
+        <div class="card ">
+          <div class="card-body">
+            <h1 class="mb-5 fs-1">Evidencias</h1>
+            <div class=" row col-9 mx-auto mb-4">
+              <div class="row">
+                <input class="fs-5 border-0 col border-bottom" type="text" placeholder="Buscar por Id">
+              </div>
+            </div>
+            
 
-      <div class="col-12 col-sm-5 col-md-6 ms-2 ">
+            <div class="my-custom-scrollbar ">
+              <table class="table table-bordered table-hover ">
+                <thead class="s bg-info ">
+                  <tr class=" text-center">
+                    <th scope="col">No.</th>
+                    <th scope="col">Fecha Envio</th>
+                    <th scope="col">Unidad</th>
+                    <th scope="col">Proceso</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Ambito</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody class=" text-center align-middle">
+                  <tr *ngFor = "let item of listaEvidencias; let i = index">
+                    <td>{{item.id_evidencias}}</td>
+                    <td>08/99/00</td>
+                    <td>{{item.nombre_unidad}}</td>
+                    <td>{{item.nombre_procesos}}</td>
+                    <td>{{item.nombre_registros}}</td>
+                    <td>{{item.nombre_ambito_academico}}</td>
+                    <td>
+                    
+                    <p *ngIf="item.id_estados == 1"><mat-icon class="ms-1 text-success" ><i
+                      class="fa fa-solid fa-user-check w-input"></i></mat-icon>
+                    </p>
+                    
+                    <p *ngIf="item.id_estados == 2"><mat-icon class="ms-1 text-success" ><i
+                      class="fa fa-solid fa-user-check w-input"></i></mat-icon></p>
 
-
-        <mat-form-field class="container" appearance="standard">
-          <mat-label>Filtrar por codigo</mat-label>
-          <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Ingrese Codigo" #input>
-        </mat-form-field>
-
-      </div>
-
-      <div class="estado-text col-md-4 ">
-        <span class="">Mostrar por estado: </span>
-
-        <div>
-
-          <form class=" col-md-2 ms-1 mb-1" action="/action_page.php">
-            <select class="estado" mat-button id="cars" name="cars">
-              <option value="volvo">En Espera</option>
-              <option value="saab">Aprobado</option>
-              <option value="fiat">Rechazado</option>
-            </select>
-          </form>
+                    <p *ngIf="item.id_estados == 3"><mat-icon class="ms-1 text-danger" ><i
+                      class="fa fa-solid fa-user-xmark w-input"></i></mat-icon></p>
+                    
+                    
+                    
+                    
+                    
+                    </td>
+                    <td>
+                      <mat-icon class="icon-pointer ms-2 text-primary" [routerLink]="['../crear-evidencia']"><i class="fa fa-solid fa-eye w-input"></i>
+                      </mat-icon>
+                      <mat-icon class="icon-pointer ms-2 " [routerLink]="['../crear-evidencia']"><i
+                          class="fa fa-regular text-primary fa-pen-to-square w-input"></i></mat-icon>
+                      <mat-icon class="icon-pointer ms-2" [routerLink]="['../crear-evidencia']"><i
+                          class="fa fa-solid text-danger fa-trash w-input"></i></mat-icon>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-
       </div>
-
     </div>
-
-
-
-    <table mat-table [dataSource]="dataSource">
-
-      <!-- Position Codigo -->
-      <ng-container matColumnDef="codigo">
-        <th class="text-center border header-table " mat-header-cell *matHeaderCellDef> No.</th>
-        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.codigo}} </td>
-      </ng-container>
-
-      <!-- Name Envio -->
-      <ng-container matColumnDef="envio">
-        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Fecha Envio </th>
-        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.fecha_envio |  date: 'dd/MM/yyyy'}}
-        </td>
-      </ng-container>
-
-      <!-- Weight Unidad -->
-      <ng-container matColumnDef="unidad">
-        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Unidad</th>
-        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.unidad | titlecase}} </td>
-      </ng-container>
-
-      <!-- Symbol Proceso -->
-      <ng-container matColumnDef="proceso">
-        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Proceso </th>
-        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.proceso | titlecase}} </td>
-      </ng-container>
-
-      <!-- Symbol Registro -->
-      <ng-container matColumnDef="registro">
-        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef> Registro </th>
-        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.registro | titlecase}} </td>
-      </ng-container>
-
-      <!-- Symbol Ambito -->
-      <ng-container matColumnDef="ambito">
-        <th class="text-center border header-table" mat-header-cell *matHeaderCellDef>Ambito </th>
-        <td class="text-center border" mat-cell *matCellDef="let element"> {{element.ambito | titlecase}} </td>
-      </ng-container>
-
-      <!-- Symbol Estado -->
-      <ng-container matColumnDef="estado">
-        <th class="text-center border header-table col-md-2 " mat-header-cell *matHeaderCellDef> Estado</th>
-        <td class="text-center border " mat-cell *matCellDef="let element">
-          <mat-icon class="ms-1  " ><i
-              class="fa fa-solid fa-question w-input  "></i></mat-icon>
-          <mat-icon class="ms-1 " ><i
-              class="fa fa-solid fa-question w-input"></i></mat-icon>
-          <mat-icon class="ms-1 text-success" ><i
-              class="fa fa-solid fa-user-check w-input"></i></mat-icon>
-          <mat-icon class="ms-1 text-success" ><i
-              class="fa fa-solid fa-user-check w-input"></i></mat-icon>
-          <mat-icon class="ms-1 text-danger" ><i
-              class="fa fa-solid fa-user-xmark w-input"></i></mat-icon>
-          <mat-icon class="ms-1 text-danger" ><i
-              class="fa fa-solid fa-user-xmark w-input"></i></mat-icon>
-
-        </td>
-      </ng-container>
-
-      <!-- Symbol Accion -->
-      <ng-container matColumnDef="accion">
-        <th class="text-center border header-table col-md-2" mat-header-cell *matHeaderCellDef>Accion</th>
-        <td class="text-center border" mat-cell *matCellDef="let element">
-
-          <mat-icon class="icon-pointer ms-2 text-primary" [routerLink]="['../crear-evidencia']"><i class="fa fa-solid fa-eye w-input"></i>
-          </mat-icon>
-          <mat-icon class="icon-pointer ms-2 " [routerLink]="['../crear-evidencia']"><i
-              class="fa fa-regular text-primary fa-pen-to-square w-input"></i></mat-icon>
-          <mat-icon class="icon-pointer ms-2" [routerLink]="['../crear-evidencia']"><i
-              class="fa fa-solid text-danger fa-trash w-input"></i></mat-icon>
-
-
-
-        </td>
-      </ng-container>
-
-
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; "></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
   </div>
 
 </body>
 
-</html>

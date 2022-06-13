@@ -134,4 +134,12 @@ guardarUsuario(usuario: Usuario): Observable<Usuario>{
 
 }
 
+/* ###################### Evidencias #####################################################*/
+
+obtenerEvidencias(): Observable<any>{
+
+  const url = `${ this.urlBackend}/evidencias`;
+  return this.http.get(url)
+}
+
 }

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { DatePipe } from '@angular/common';
+import { Evidencias } from '../../../interfaces/evidencias.interface';
+import { AdministradorService } from 'src/app/services/administrador.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 
 export interface PeriodicElement {
   codigo: number;
@@ -20,6 +24,10 @@ export interface PeriodicElement {
 })
 export class VerEvidenciasComponent implements OnInit {
 
+  public listaEvidencias : Evidencias[] = [];
+
+  constructor(public dialog: MatDialog, private AdministradorService: AdministradorService,private aRouter: ActivatedRoute) {}
+
    ELEMENT_DATA: PeriodicElement[] = [
     {codigo: 1, fecha_envio: new Date , unidad: "informatica", proceso: 'Hewewe',
      registro: 'bbbbH', ambito: 'vvvvvvH', estado: 'sdsddsdsdsdsdsdsH', accion: 'visibility'},
@@ -37,10 +45,20 @@ export class VerEvidenciasComponent implements OnInit {
     
   ];
   
-  constructor() { }
+  
+  obtenerEvidencias(){
+    this.AdministradorService.obtenerEvidencias().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaEvidencias = data;
+      this.listaEvidencias.reverse()
+      
+    })
+  }
+
+  
 
   ngOnInit(): void {
-   
+    this.obtenerEvidencias();
   }
   displayedColumns: string[] = ['codigo', 'envio', 'unidad','proceso',
                                 'registro', 'ambito', 'estado', 'accion'];
