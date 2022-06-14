@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Criterio } from 'src/app/interfaces/criterios.interface';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Criterio } from 'src/app/interfaces/administrador/criterios.interface';
 import { Subscription} from 'rxjs';
 import { AdministradorService } from '../../services/administrador.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,17 +27,16 @@ export class CriteriosComponent implements OnInit{
    
   }
 
-  openDialog() {
+  openDialog(criterio?: any) {
     const dialogRef = this.dialog.open(Modalcriterios1,{ disableClose: true ,
       height: '500px',
-      width: '700px',})
-    /*   this.dialog.open(DialogContentExampleDialog, { disableClose: true }); */
-      
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-   
-  });
-
+      width: '700px',
+      data: {id_criterios: criterio?.id_criterios, codigo_criterios: criterio?.codigo_criterios, 
+             nombre_criterios: criterio?.nombre_criterios, descripcion_criterios: criterio?.descripcion_criterios,
+             estado_criterios: criterio?.estado_criterios}
+    })
+    
+    console.log("la id es:",criterio?.id_criterios)
   }
 
 
@@ -62,22 +61,24 @@ export class CriteriosComponent implements OnInit{
         confirmButtonText: '¡ Si, borrar !'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.AdministradorService.borrarCriterio(id).subscribe(data =>{
+          this.AdministradorService.borrarCriterio(id).subscribe(
+            {
+              next: data =>{
           Swal.fire(
             'Eliminado!',
             'Su criterio ha sido eliminado.',
             'success',
-  
             
           )
           this.obtenerCriterio()
-        }, error => {
-          Swal.fire('Error', "Error al eliminar la unidad", 'error');
+              }, error: error => {
+          Swal.fire('Error', "Error al eliminar, esta criterios esta en uso", 'error');
         }
+      }
+         
+       ) }
      
-    )}
-  })
-      
+    })
   }
   buscar(termino: string){
 
@@ -99,36 +100,44 @@ export class CriteriosComponent implements OnInit{
       }
       )
    
+    }
   }
-openDialog2() {
-  const dialogRef = this.dialog.open(Modalcriterios2, {
-    height: '500px',
-    width: '700px',
-  });
 
-/*   dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  }); */
-}
-}
 /* ################################ MODAL 1 ######################################### */
+
+
 @Component({
   selector: 'modal-criterios-1',
   templateUrl: './modal-criterios-1.html',
   styleUrls: ['./criterios.component.css']
 })
-export class Modalcriterios1 {
+export class Modalcriterios1 implements OnInit{
 
-  
-  formularioCriterio: FormGroup = this.fb.group({
-    codigo_criterios      : ['', [Validators.required, Validators.minLength(3)]],
-    nombre_criterios      : ['', [Validators.required, Validators.minLength(3)]],
-    descripcion_criterios : ['', [Validators.required, Validators.minLength(3)]],
-  });
+  formularioCriterio!: FormGroup;
+
+  titulo = 'Crear Unidad'
+  estado: boolean = false; 
+
 
 constructor( private fb: FormBuilder, private AdministradorService: AdministradorService,
-             private aRouter: ActivatedRoute, private router: Router) { }
+             private aRouter: ActivatedRoute, private router: Router,
+             @Inject(MAT_DIALOG_DATA) public data: {id_criterios: string, codigo_criterios: string,
+              nombre_criterios: string, descripcion_criterios: string, estado_criterios: string}) {
 
+
+                  
+  this.formularioCriterio = this.fb.group({
+    codigo_criterios      : [data.codigo_criterios, [Validators.required, Validators.minLength(3)]],
+    nombre_criterios      : [data.nombre_criterios, [Validators.required, Validators.minLength(3)]],
+    descripcion_criterios : [data.descripcion_criterios, [Validators.required, Validators.minLength(3)]],
+    estado_criterios      : [true, [Validators.required]],
+  });
+               }
+              
+ngOnInit(): void {
+  console.log("la id es:",this.data.id_criterios)
+    this.cargarUnidadModal();
+}
 campoNoEsValido(campo: string){
   return this.formularioCriterio.controls[campo].errors &&
          this.formularioCriterio.controls[campo].touched
@@ -142,26 +151,41 @@ campoNoEsValido(campo: string){
   console.log("asdfghjklñ");
       return;
     }
-    this.AdministradorService.guardarCriterio( this.formularioCriterio.value ).subscribe(resp =>{
+
+    if (this.data.id_criterios){
+      this.AdministradorService.actualizarCriterio(this.data.id_criterios, this.formularioCriterio.value)
+      .subscribe({
+        next: data =>{
+        Swal.fire('Actualizacion Exitosa', "Datos Actualizados Con Exito ", 'info');
+      /* this.router.navigate(['usuario-administrador/unidades']); */
+        }, error: error => {
+          Swal.fire('Error', "Error al Actualizar", 'error');
+        }
+      })
+  
+  }else{
+    this.AdministradorService.guardarCriterio( this.formularioCriterio.value )
+    .subscribe({
+      next: resp =>{
     
       this.router.navigate(['usuario-administrador/criterios']);
 
       Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
       this.formularioCriterio.reset();
-    })
-    
-    /* console.log(this.miFormulario.value) */
-   
-  }
-
+    }, error: error => {
+      Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');
+    }
+  })
+}
 }
 
-
-
-@Component({
-  selector: 'modal-criterios-2',
-  templateUrl: './modal-criterios-2.html',
-  styleUrls: ['./criterios.component.css']
-})
-
-export class Modalcriterios2 {}
+  cargarUnidadModal(){
+    console.log("la id eewewewewewws:",this.data.id_criterios)
+    if (this.data.id_criterios){
+    this.estado = true;
+    this.titulo = "Actualizar Criterio";
+    this.AdministradorService.obtenerCriterioId(this.data.id_criterios)
+      this.router.navigate(['usuario-administrador/criterios']);
+    }
+      }
+}

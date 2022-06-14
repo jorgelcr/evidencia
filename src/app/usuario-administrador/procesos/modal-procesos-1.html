@@ -1,15 +1,27 @@
 <h2 mat-dialog-title>Crear Procesos</h2>
-
+<form (ngSubmit)="guardar()" [formGroup]="formularioProcesos">
 <mat-dialog-content class="mat-typography abc" >
 
     <div class="modal-body col-12">
         <span>Codigo Proceso</span>
         <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
-        <input type="text" class="form-control border-0 border-bottom" placeholder="Codigo Proceso">
+        <input formControlName="codigo_procesos" type="text" class="form-control border-0 border-bottom" placeholder="Codigo Proceso"
+        oninput="this.value = this.value.toUpperCase()">
 
         <div class="mt-3">
           <span>Nombre Proceso</span>
-          <input type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Proceso">
+          <input formControlName="nombre_procesos" type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Proceso"
+          oninput="this.value = this.value.toUpperCase()">
+        </div>
+
+        <div class="mt-1 col-5" *ngIf="estado==true">
+          <span>Estado</span>
+          <select class="form-select form-select-sm" formControlName="estado_procesos">
+            <option [value]="true">Activo</option>
+            <option [value]="false">Inactivo</option>
+          </select>
+          <span *ngIf="campoNoEsValido('estado_procesos')" class="form-text text-danger">
+            Elija alguna Unidad</span>
         </div>
 
       </div>
@@ -17,5 +29,17 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="mt-5">
   <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+ 
+  <div *ngIf="estado == false">
+
+    <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+  </div>
+
+  <div *ngIf="estado==true">
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" mat-button cdkFocusInitial
+      mat-button>Guardar</button>
+  </div>
+
 </mat-dialog-actions>
+
+</form>

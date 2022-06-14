@@ -4,8 +4,10 @@ import { Observable, Subject, tap } from 'rxjs';
 import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-import { Unidad } from '../interfaces/unidad.inteface';
-import { Usuario } from '../interfaces/usuario.interface';
+import { Unidad } from '../interfaces/administrador/unidad.inteface';
+import { Usuario } from '../interfaces/administrador/usuario.interface';
+import { Criterio } from '../interfaces/administrador/criterios.interface';
+import { Procesos } from '../interfaces/administrador/procesos.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,41 +37,52 @@ export class AdministradorService {
 
   }
 
-  obtenerUnidad(): Observable<any>{
+  obtenerUnidad(): Observable<Unidad[]>{
 
     const url = `${ this.urlBackend}/unidad`;
-    return this.http.get(url)
+    return this.http.get<Unidad[]>(url)
   }
 
-  borrarUnidad(id: string): Observable<any>{
+  borrarUnidad(id: string): Observable<Unidad>{
 
     const url = `${ this.urlBackend}/unidad/`;
-    return this.http.delete(url + id);
+    return this.http.delete<Unidad>(url + id);
     /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
   }
 
-  obtenerUnidadId(id: string){
+  obtenerUnidadId(id: string): Observable<Unidad>{
 
     const url = `${ this.urlBackend}/unidad/${id}`;
-    return this.http.get(url)
+    return this.http.get<Unidad>(url)
     }
 
+  actualizarUnidad(id: string, unidad: Unidad): Observable<Unidad>{
 
-  buscarUnidad(termino: string): Observable<any>{
+    const url = `${ this.urlBackend}/unidad/${id}`;
+    return this.http.put<Unidad>(url, unidad).
+    pipe(
+      tap(() =>{
+        this._refresh$.next();
+      })
+    )
+    }
+  
+
+  buscarUnidad(termino: string): Observable<Unidad[]>{
 
     const url = `${ this.urlBackend}/unidad/${termino}`;
-    return this.http.get(url )
+    return this.http.get<Unidad[]>(url)
     .pipe(
-      map((resp: any) => resp.resultados
+      map((resp: any) => resp.resultado
  
     ))
   }
 /* ###################### CRITERIOS #####################################################*/
 
-guardarCriterio(unidad: Unidad): Observable<Unidad>{
+guardarCriterio(unidad: Criterio): Observable<Criterio>{
 
   const url = `${ this.urlBackend}/criterio`;
-  return this.http.post<Unidad>(url, unidad).
+  return this.http.post<Criterio>(url, unidad).
   pipe(
     tap(() =>{
       this._refresh$.next();
@@ -78,30 +91,39 @@ guardarCriterio(unidad: Unidad): Observable<Unidad>{
 
 }
 
-obtenerCriterio(): Observable<any>{
+obtenerCriterio(): Observable<Criterio[]>{
 
   const url = `${ this.urlBackend}/criterio`;
-  return this.http.get(url)
+  return this.http.get<Criterio[]>(url)
 }
 
-borrarCriterio(id: string): Observable<any>{
+borrarCriterio(id: string): Observable<Criterio>{
 
   const url = `${ this.urlBackend}/criterio/`;
-  return this.http.delete(url + id);
+  return this.http.delete<Criterio>(url + id);
   /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
 }
 
-obtenerCriterioId(id: string){
+obtenerCriterioId(id: string): Observable<Criterio>{
 
   const url = `${ this.urlBackend}/criterio/${id}`;
-  return this.http.get(url)
+  return this.http.get<Criterio>(url)
   }
 
+  actualizarCriterio(id: string, criterio: Criterio): Observable<Criterio>{
 
-buscarCriterio(termino: string): Observable<any>{
+    const url = `${ this.urlBackend}/criterio/${id}`;
+    return this.http.put<Criterio>(url, criterio).
+    pipe(
+      tap(() =>{
+        this._refresh$.next();
+      })
+    )
+    }
+buscarCriterio(termino: string): Observable<Criterio[]>{
 
   const url = `${ this.urlBackend}/criterio/${termino}`;
-  return this.http.get(url )
+  return this.http.get<Criterio[]>(url)
   .pipe(
     map((resp: any) => resp.resultados
 
@@ -134,6 +156,7 @@ guardarUsuario(usuario: Usuario): Observable<Usuario>{
 
 }
 
+<<<<<<< Updated upstream
 /* ###################### Evidencias #####################################################*/
 
 obtenerEvidencias(): Observable<any>{
@@ -142,4 +165,63 @@ obtenerEvidencias(): Observable<any>{
   return this.http.get(url)
 }
 
+=======
+
+/* ###################### Procesos #####################################################*/
+
+guardarProcesos(proceso: Procesos): Observable<Procesos>{
+
+  const url = `${ this.urlBackend}/proceso`;
+  return this.http.post<Procesos>(url, proceso).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+
+}
+
+obtenerProcesos(): Observable<Procesos[]>{
+
+  const url = `${ this.urlBackend}/proceso`;
+  return this.http.get<Procesos[]>(url)
+}
+
+borrarProcesos(id: string): Observable<Procesos>{
+
+  const url = `${ this.urlBackend}/proceso/`;
+  return this.http.delete<Procesos>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+}
+
+obtenerProcesosId(id: string): Observable<Procesos>{
+
+  const url = `${ this.urlBackend}/proceso/${id}`;
+  return this.http.get<Procesos>(url)
+  }
+
+actualizarProcesos(id: string, proceso: Procesos): Observable<Procesos>{
+
+  const url = `${ this.urlBackend}/proceso/${id}`;
+  return this.http.put<Procesos>(url, proceso).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+  }
+
+
+buscarProcesos(termino: string): Observable<Procesos[]>{
+
+  const url = `${ this.urlBackend}/proceso/${termino}`;
+  return this.http.get<Procesos[]>(url)
+  .pipe(
+    map((resp: any) => resp.resultado
+
+  ))
+}
+
+
+>>>>>>> Stashed changes
 }

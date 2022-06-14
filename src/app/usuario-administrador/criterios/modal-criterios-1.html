@@ -7,24 +7,37 @@
     <div class="modal-body col-12">
         <span>Codigo Criterio</span>
         <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
-        <input formControlName="codigo_criterios" type="text" class="form-control border-0 border-bottom" placeholder="Codigo Criterio">
+        <input formControlName="codigo_criterios" type="text" class="form-control border-0 border-bottom" 
+        placeholder="Codigo Criterio" oninput="this.value = this.value.toUpperCase()">
         <span   *ngIf="campoNoEsValido('codigo_criterios')" class="form-text text-danger">
-          Codigo debe tener 3 numeros</span>
+          Codigo debe tener 3 caracteres</span>
 
         <div class="mt-3">
           <span>Nombre Criterio</span>
-          <input formControlName="nombre_criterios" type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Criterio">
+          <input formControlName="nombre_criterios" type="email" class="form-control border-0 border-bottom" 
+          placeholder="Ingrese Nombre Criterio" oninput="this.value = this.value.toUpperCase()">
           <span   *ngIf="campoNoEsValido('nombre_criterios')" class="form-text text-danger">
-            Nombre debe tener 3 numeros</span>
+            Nombre debe tener 3 caracteres</span>
         </div>
   
         <div class="mt-3">
           <span>Descripcion Criterio</span>
-          <input formControlName="descripcion_criterios" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Descripion Criterio">
+          <input formControlName="descripcion_criterios" type="text"
+           class="form-control border-0 border-bottom" placeholder="Ingrese Descripion Criterio" oninput="this.value = this.value.toUpperCase()">
           <span   *ngIf="campoNoEsValido('descripcion_criterios')" class="form-text text-danger">
-            Descripcion debe tener 3 numeros</span>
+            Descripcion debe tener 3 caracteres</span>
         </div>
-  
+
+        <div class="mt-1 col-5" *ngIf="estado==true">
+          <span>Estado</span>
+          <select class="form-select form-select-sm" formControlName="estado_criterios">
+            <option [value]="true">Activo</option>
+            <option [value]="false">Inactivo</option>
+          </select>
+          <span *ngIf="campoNoEsValido('estado_criterios')" class="form-text text-danger">
+            Elija algun estado</span>
+        </div>
+
       </div>
   
 </mat-dialog-content>

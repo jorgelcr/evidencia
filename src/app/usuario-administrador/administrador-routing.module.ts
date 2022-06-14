@@ -24,7 +24,7 @@ const routes: Routes = [
       {path: 'usuarios', component: UsuariosComponent },      
       {path: 'debilidades', component: DebilidadesComponent },
       {path: 'unidades', component: UnidadesComponent },
-      {path: 'credits/:id_unidad', component: UnidadesComponent },
+  /*     {path: 'credits/:id_unidad', component: UnidadesComponent }, */
       {path: 'criterios', component: CriteriosComponent },
       {path: 'procesos', component: ProcesosComponent },      
       {path: 'tipo-registro', component: TiposRegistrosComponent},

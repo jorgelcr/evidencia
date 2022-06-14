@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsuariosComponent, DialogContentExampleDialog, DialogContentExampleDialog2 } from './usuarios/usuarios.component';
 import { DebilidadesComponent, ModalDebilidades1, ModalDebilidades2 } from './debilidades/debilidades.component';
-import { ModalUnidades1, ModalUnidades2, UnidadesComponent } from './unidades/unidades.component';
-import { CriteriosComponent, Modalcriterios1, Modalcriterios2 } from './criterios/criterios.component';
-import { ModalProcesos1, ModalProcesos2, ProcesosComponent } from './procesos/procesos.component';
+import { ModalUnidades1, UnidadesComponent } from './unidades/unidades.component';
+import { CriteriosComponent, Modalcriterios1 } from './criterios/criterios.component';
+import { ModalProcesos1, ProcesosComponent } from './procesos/procesos.component';
 import { AdministradorRoutingModule } from './administrador-routing.module';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
@@ -38,13 +38,10 @@ import { booleanPipe } from '../pipes/boolean.pipe';
     ModalDebilidades1,
     ModalDebilidades2,
     Modalcriterios1,
-    Modalcriterios2,
     ModalUnidades1,
-    ModalUnidades2,
     ModalTiposRegistros1,
     ModalTiposRegistros2,
     ModalProcesos1,
-    ModalProcesos2,
     ModalAmbitoGeografico1,
     ModalAmbitoGeografico2,
     ModalAmbitoAcademico1,
