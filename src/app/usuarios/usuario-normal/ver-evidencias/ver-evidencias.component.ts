@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { DatePipe } from '@angular/common';
-import { Evidencias } from '../../../interfaces/evidencias.interface';
-import { AdministradorService } from 'src/app/services/administrador.service';
+import { Evidencias } from '../../../interfaces/usuario-normal/evidencias.interface';
+import { UsuarioNormalService } from 'src/app/services/usuario-normal.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
@@ -26,7 +26,7 @@ export class VerEvidenciasComponent implements OnInit {
 
   public listaEvidencias : Evidencias[] = [];
 
-  constructor(public dialog: MatDialog, private AdministradorService: AdministradorService,private aRouter: ActivatedRoute) {}
+  constructor(public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute) {}
 
    ELEMENT_DATA: PeriodicElement[] = [
     {codigo: 1, fecha_envio: new Date , unidad: "informatica", proceso: 'Hewewe',
@@ -47,7 +47,7 @@ export class VerEvidenciasComponent implements OnInit {
   
   
   obtenerEvidencias(){
-    this.AdministradorService.obtenerEvidencias().subscribe(data =>{
+    this.UsuarioNormalService.obtenerEvidencias().subscribe(data =>{
      /*  console.log(data); */
       this.listaEvidencias = data;
       this.listaEvidencias.reverse()

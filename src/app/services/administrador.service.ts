@@ -156,7 +156,6 @@ guardarUsuario(usuario: Usuario): Observable<Usuario>{
 
 }
 
-<<<<<<< Updated upstream
 /* ###################### Evidencias #####################################################*/
 
 obtenerEvidencias(): Observable<any>{
@@ -165,7 +164,6 @@ obtenerEvidencias(): Observable<any>{
   return this.http.get(url)
 }
 
-=======
 
 /* ###################### Procesos #####################################################*/
 
@@ -223,5 +221,4 @@ buscarProcesos(termino: string): Observable<Procesos[]>{
 }
 
 
->>>>>>> Stashed changes
 }
