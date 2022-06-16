@@ -132,7 +132,6 @@ buscarCriterio(termino: string): Observable<Criterio[]>{
   ))
 }
 
-
 /* ###################### Evidencias #####################################################*/
 
 obtenerEvidencias(): Observable<any>{
