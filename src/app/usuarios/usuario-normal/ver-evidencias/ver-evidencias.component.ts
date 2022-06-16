@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { DatePipe } from '@angular/common';
-import { Evidencias } from '../../../interfaces/evidencias.interface';
+
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Evidencias } from 'src/app/interfaces/evidencias.interface';
 
 export interface PeriodicElement {
   codigo: number;

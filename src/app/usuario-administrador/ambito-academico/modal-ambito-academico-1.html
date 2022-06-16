@@ -1,17 +1,41 @@
 <h2 mat-dialog-title>Crear Ambito Academico</h2>
 
-<mat-dialog-content class="mat-typography abc" >
+<form (ngSubmit)="guardar()" [formGroup]="formularioAmbitoAcademico">
 
+  <mat-dialog-content class="mat-typography abc" >
+    
     <div class="modal-body col-12">
-        <span>Nombre Ambito Academico</span>
-        <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
-        <input type="text" class="form-control border-0 border-bottom"
-          placeholder="Ingrese Nombre Ambito Academico">
-
+      <span>Nombre Ambito Academico</span>
+      <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
+        <input formControlName="nombre_ambito_academico" type="text" class="form-control border-0 border-bottom"
+          placeholder="Ingrese Nombre Ambito Academico" oninput="this.value = this.value.toUpperCase()">
+          <span *ngIf="campoNoEsValido('nombre_ambito_academico')" class="form-text text-danger">
+            Codigo debe tener 3 caracteres</span>
       </div>
   
+      <div class="mt-1 col-5" *ngIf="estado==true">
+        <span>Estado</span>
+        <select class="form-select form-select-sm" formControlName="estado_ambito_academico">
+          <option [value]="true">Activo</option>
+          <option [value]="false">Inactivo</option>
+        </select>
+        <span *ngIf="campoNoEsValido('estado_ambito_academico')" class="form-text text-danger">
+          Elija alguna Ambito Academico</span>
+      </div>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="mt-5">
-  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+  <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+  <div *ngIf="estado == false">
+
+    <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+  </div>
+
+  <div *ngIf="estado==true">
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" mat-button cdkFocusInitial
+      mat-button>Guardar</button>
+  </div>
+
 </mat-dialog-actions>
+    
+</form>

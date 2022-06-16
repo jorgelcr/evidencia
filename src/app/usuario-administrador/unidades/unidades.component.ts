@@ -137,7 +137,6 @@ export class ModalUnidades1 implements OnInit{
 ngOnInit(): void {
   
   this.cargarUnidadModal();
-  this.obtenerUnidades();
 }
               
 
@@ -186,17 +185,6 @@ if(!this.data.id_unidad){
 }
 
 }
-
-obtenerUnidades(){
-  if (this.data.id_unidad){
-  this.AdministradorService.obtenerUnidadId(this.data.id_unidad)
-  .subscribe((data: any) => 
-    this.listaUnidades = data.resultado)
-    
-  }
-
-}
-
   cargarUnidadModal(){
 
     if (this.data.id_unidad){

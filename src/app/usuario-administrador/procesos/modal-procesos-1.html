@@ -7,11 +7,15 @@
         <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
         <input formControlName="codigo_procesos" type="text" class="form-control border-0 border-bottom" placeholder="Codigo Proceso"
         oninput="this.value = this.value.toUpperCase()">
+        <span *ngIf="campoNoEsValido('codigo_procesos')" class="form-text text-danger">
+          Nombre debe tener 3 caracteres</span>
 
         <div class="mt-3">
           <span>Nombre Proceso</span>
           <input formControlName="nombre_procesos" type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Proceso"
           oninput="this.value = this.value.toUpperCase()">
+          <span *ngIf="campoNoEsValido('nombre_procesos')" class="form-text text-danger">
+            Nombre debe tener 3 caracteres</span>
         </div>
 
         <div class="mt-1 col-5" *ngIf="estado==true">
@@ -21,15 +25,14 @@
             <option [value]="false">Inactivo</option>
           </select>
           <span *ngIf="campoNoEsValido('estado_procesos')" class="form-text text-danger">
-            Elija alguna Unidad</span>
+            Elija Algun Estado</span>
         </div>
 
       </div>
   
 </mat-dialog-content>
 <mat-dialog-actions align="end" class="mt-5">
-  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
- 
+  <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
   <div *ngIf="estado == false">
 
     <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>

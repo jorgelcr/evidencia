@@ -22,17 +22,7 @@ export class AmbitoGeograficoComponent {
   });
 
   }
-  
-openDialog2() {
-  const dialogRef = this.dialog.open(ModalAmbitoGeografico2, {
-    height: '600px',
-    width: '700px',
-  });
 
-/*   dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  }); */
-}
 }
 
 @Component({
@@ -43,10 +33,3 @@ openDialog2() {
 
 export class ModalAmbitoGeografico1 {}
 
-@Component({
-  selector: 'modal-ambito-geografico-2',
-  templateUrl: './modal-ambito-geografico-2.html',
-  styleUrls: ['./ambito-geografico.component.css']
-})
-
-export class ModalAmbitoGeografico2 {}
