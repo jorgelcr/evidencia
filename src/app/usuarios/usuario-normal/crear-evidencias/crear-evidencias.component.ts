@@ -14,6 +14,7 @@ export class CrearEvidenciasComponent implements OnInit {
 
 
   public listaGetEvidencias : Evidencias[] = [];
+  public listaGetCriterio : any[] = [];
   constructor(private fb: FormBuilder, public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute) {}
 
 
@@ -23,8 +24,74 @@ export class CrearEvidenciasComponent implements OnInit {
   });
 
 
-  obtenerGetEvidencias(){
-    this.UsuarioNormalService.obtenerGetEvidencias().subscribe(data =>{
+  ngOnInit(): void {
+    //this.obtenerGetEvidencias();
+    this.obtenerGetUsuario();
+    this.obtenerGetUnidad();
+    this.obtenerGetRegistro();
+    this.obtenerGetCriterio();
+    this.obtenerGetProceso();
+    this.obtenerGetDebilidad();
+  }
+  
+
+  obtenerGetUsuario(){
+    this.UsuarioNormalService.obtenerGetUsuario().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetEvidencias = data;
+      this.listaGetEvidencias.reverse()
+      
+    })
+  }
+
+  obtenerGetUnidad(){
+    this.UsuarioNormalService.obtenerGetUnidad().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetEvidencias = data;
+      this.listaGetEvidencias.reverse()
+      
+    })
+  }
+
+  obtenerGetRegistro(){
+    this.UsuarioNormalService.obtenerGetRegistro().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetEvidencias = data;
+      this.listaGetEvidencias.reverse()
+      
+    })
+  }
+
+  obtenerGetAmbitoAcademico(){
+    this.UsuarioNormalService.obtenerGetAmbitoAcademico().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetEvidencias = data;
+      this.listaGetEvidencias.reverse()
+      
+    })
+  }
+
+  obtenerGetCriterio(){
+    console.log("klfjskldjf")
+    this.UsuarioNormalService.obtenerGetCriterio().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetCriterio = data;
+      this.listaGetCriterio.reverse()
+      
+    })
+  }
+
+  obtenerGetProceso(){
+    this.UsuarioNormalService.obtenerGetProceso().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetEvidencias = data;
+      this.listaGetEvidencias.reverse()
+      
+    })
+  }
+
+  obtenerGetDebilidad(){
+    this.UsuarioNormalService.obtenerGetDebilidad().subscribe(data =>{
      /*  console.log(data); */
       this.listaGetEvidencias = data;
       this.listaGetEvidencias.reverse()
@@ -33,9 +100,7 @@ export class CrearEvidenciasComponent implements OnInit {
   }
   
 
-  ngOnInit(): void {
-    this.obtenerGetEvidencias();
-  }
+  
   guardar(){
     /*     console.log(this.miFormulario.value); */
         console.log("asdfghjklñ");

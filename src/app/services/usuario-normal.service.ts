@@ -35,9 +35,61 @@ import { environment } from 'src/environments/environment';
     const url = `${ this.urlBackend}/evidencias`;
     return this.http.get(url)
   }
+
+  /* ###################### Obtener Get Usuario #####################################################*/
   
+  obtenerGetUsuario(): Observable<any>{
   
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
   
+  /* ###################### Obtener Get Unidad #####################################################*/
   
+  obtenerGetUnidad(): Observable<any>{
   
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
+
+  /* ###################### Obtener Get Registro #####################################################*/
+  
+  obtenerGetRegistro(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
+  
+  /* ###################### Obtener Get Ambito Academico #####################################################*/
+  
+  obtenerGetAmbitoAcademico(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
+  
+  /* ###################### Obtener Get Criterio #####################################################*/
+  
+  obtenerGetCriterio(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/getcriterio/criterios`;
+    return this.http.get(url)
+  }
+
+  /* ###################### Obtener Get Proceso #####################################################*/
+  
+  obtenerGetProceso(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
+  
+  /* ###################### Obtener Get Debilidad #####################################################*/
+  
+  obtenerGetDebilidad(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
+
   }

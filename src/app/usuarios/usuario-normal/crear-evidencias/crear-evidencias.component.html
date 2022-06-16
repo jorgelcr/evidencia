@@ -80,13 +80,15 @@
                   </div>
                 </div>
 
+                
                 <div class="mb-3">
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Criterio</label>
                     <div class="col-sm-8">
                       <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected>Selecciona una opcion</option>
-                        <option *ngFor="let item of listaGetEvidencias">{{item.nombre_criterios}}</option>
+                        <option *ngFor="let item of listaGetCriterio">{{item.nombre_criterios}}</option>
+                        
                         
                       </select>
                     </div>
