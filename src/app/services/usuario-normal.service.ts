@@ -28,6 +28,13 @@ import { environment } from 'src/environments/environment';
     return this.http.get(url)
   }
   
+  /* ###################### Obtener Get Evidencias #####################################################*/
+  
+  obtenerGetEvidencias(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/evidencias`;
+    return this.http.get(url)
+  }
   
   
   
