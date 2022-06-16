@@ -33,7 +33,7 @@ export class ProcesosComponent implements OnInit{
     const dialogRef = this.dialog.open(ModalProcesos1,{ disableClose: true ,
       height: '400px',
       width: '700px',
-      data: {id_unidad: procesos?.id_unidad, codigo_procesos: procesos?.codigo_procesos, 
+      data: {id_procesos: procesos?.id_procesos, codigo_procesos: procesos?.codigo_procesos, 
         nombre_procesos: procesos?.nombre_procesos, estado_procesos: procesos?.estado_procesos}
     })
    
@@ -135,7 +135,7 @@ export class ModalProcesos1 implements OnInit{
 
 
 ngOnInit(): void {
-
+  this.cargarProcesosModal();
 
 }
 
@@ -149,7 +149,7 @@ campoNoEsValido(campo: string){
   
     if ( this.formularioProcesos.invalid ){
       this.formularioProcesos.markAllAsTouched();
-      Swal.fire('Error', "Lene los campos de forma correcta", 'error');
+      Swal.fire('Error', "Llene los campos de forma correcta", 'error');
   console.log("asdfghjklñ");
       return;
     }
@@ -159,7 +159,6 @@ if (this.data.id_procesos){
     .subscribe({
       next: data =>{
       Swal.fire('Actualizacion Exitosa', "Datos Actualizados Con Exito ", 'info');
-    this.router.navigate(['usuario-administrador/unidades']);
       }, error: error => {
         Swal.fire('Error', "Error al Actualizar", 'error');
       }
@@ -185,5 +184,14 @@ if(!this.data.id_procesos){
 }
 
 }
+  cargarProcesosModal(){
 
-}
+    if (this.data.id_procesos){
+    this.estado = true;
+    this.titulo = "Actualizar Unidad";
+    this.AdministradorService.obtenerProcesosId(this.data.id_procesos)
+    
+    }
+      }
+    }
+

@@ -8,6 +8,8 @@ import { Unidad } from '../interfaces/administrador/unidad.inteface';
 import { Usuario } from '../interfaces/administrador/usuario.interface';
 import { Criterio } from '../interfaces/administrador/criterios.interface';
 import { Procesos } from '../interfaces/administrador/procesos.interface';
+import { tipoRegistros } from '../interfaces/administrador/tiposRegistros.intefrace';
+import { ambitoAcademico } from '../interfaces/administrador/ambitoAcademico.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -130,32 +132,6 @@ buscarCriterio(termino: string): Observable<Criterio[]>{
   ))
 }
 
-/* ###################### Usuario #####################################################*/
-
-obtenerRolUsuario(): Observable<any[]>{
-
-  const url = `${ this.urlBackend}/usuario/rol`;
-  return this.http.get<any[]>(url)
-}
-
-obtenerUnidadUsuario(): Observable<any[]>{
-
-  const url = `${ this.urlBackend}/usuario/unidad`;
-  return this.http.get<any[]>(url)
-}
-
-guardarUsuario(usuario: Usuario): Observable<Usuario>{
-
-  const url = `${ this.urlBackend}/usuario`;
-  return this.http.post<Usuario>(url, usuario).
-  pipe(
-    tap(() =>{
-      this._refresh$.next();
-    })
-  )
-
-}
-
 /* ###################### Evidencias #####################################################*/
 
 obtenerEvidencias(): Observable<any>{
@@ -220,5 +196,185 @@ buscarProcesos(termino: string): Observable<Procesos[]>{
   ))
 }
 
+/* ###################### tiposRegistros #####################################################*/
 
+guardartiposRegistros(unidad: Unidad): Observable<tipoRegistros>{
+
+  const url = `${ this.urlBackend}/tiporegistro`;
+  return this.http.post<tipoRegistros>(url, unidad).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+
+}
+
+obtenertiposRegistros(): Observable<tipoRegistros[]>{
+
+  const url = `${ this.urlBackend}/tiporegistro`;
+  return this.http.get<tipoRegistros[]>(url)
+}
+
+borrartiposRegistros(id: string): Observable<tipoRegistros>{
+
+  const url = `${ this.urlBackend}/tiporegistro/`;
+  return this.http.delete<tipoRegistros>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+}
+
+obtenertiposRegistrosId(id: string): Observable<tipoRegistros>{
+
+  const url = `${ this.urlBackend}/tiporegistro/${id}`;
+  return this.http.get<tipoRegistros>(url)
+  }
+
+actualizartiposRegistros(id: string, unidad: tipoRegistros): Observable<tipoRegistros>{
+
+  const url = `${ this.urlBackend}/tiporegistro/${id}`;
+  return this.http.put<tipoRegistros>(url, unidad).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+  }
+
+
+buscartiposRegistros(termino: string): Observable<tipoRegistros[]>{
+
+  const url = `${ this.urlBackend}/tiporegistro/${termino}`;
+  return this.http.get<tipoRegistros[]>(url)
+  .pipe(
+    map((resp: any) => resp.resultado
+
+  ))
+}
+
+/* ######################   AMBITO ACADEMICO  #####################################################*/
+
+guardarAmbitoAcademico(ambitoAcademico: ambitoAcademico): Observable<ambitoAcademico>{
+
+  const url = `${ this.urlBackend}/ambitoacademico`;
+  return this.http.post<ambitoAcademico>(url, ambitoAcademico).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+
+}
+
+obtenerAmbitoAcademico(): Observable<ambitoAcademico[]>{
+
+  const url = `${ this.urlBackend}/ambitoacademico`;
+  return this.http.get<ambitoAcademico[]>(url)
+}
+
+borrarAmbitoAcademico(id: string): Observable<ambitoAcademico>{
+
+  const url = `${ this.urlBackend}/ambitoacademico/`;
+  return this.http.delete<ambitoAcademico>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+}
+
+obtenerAmbitoAcademicoId(id: string): Observable<ambitoAcademico>{
+
+  const url = `${ this.urlBackend}/ambitoacademico/${id}`;
+  return this.http.get<ambitoAcademico>(url)
+  }
+
+actualizarAmbitoAcademico(id: string, ambitoAcademico: ambitoAcademico): Observable<ambitoAcademico>{
+
+  const url = `${ this.urlBackend}/ambitoacademico/${id}`;
+  return this.http.put<ambitoAcademico>(url, ambitoAcademico).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+  }
+
+
+buscarAmbitoAcademico(termino: string): Observable<ambitoAcademico[]>{
+
+  const url = `${ this.urlBackend}/ambitoacademico/${termino}`;
+  return this.http.get<ambitoAcademico[]>(url)
+  .pipe(
+    map((resp: any) => resp.resultado
+
+  ))
+}
+
+/* ###################### USUARIO #####################################################*/
+
+guardarUsuario(usuario: Usuario): Observable<Usuario>{
+
+  const url = `${ this.urlBackend}/usuario`;
+  return this.http.post<Usuario>(url, usuario).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+
+}
+
+obtenerUsuario(): Observable<Usuario[]>{
+
+  const url = `${ this.urlBackend}/usuario/usuario`;
+  return this.http.get<Usuario[]>(url)
+}
+
+borrarUsuario(id: string): Observable<Usuario>{
+
+  const url = `${ this.urlBackend}/usuario/`;
+  return this.http.delete<Usuario>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+}
+
+obtenerUsuarioId(id: string): Observable<Usuario>{
+
+  const url = `${ this.urlBackend}/usuario/${id}`;
+  return this.http.get<Usuario>(url)
+  }
+
+actualizarUsuario(id: string, usuario: Usuario): Observable<Usuario>{
+
+  const url = `${ this.urlBackend}/usuario/${id}`;
+  return this.http.put<Usuario>(url, usuario).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+  }
+
+
+buscarUsuario(termino: string): Observable<Usuario[]>{
+
+  const url = `${ this.urlBackend}/usuario/${termino}`;
+  return this.http.get<Usuario[]>(url)
+  .pipe(
+    map((resp: any) => resp.resultado
+
+  ))
+}
+
+obtenerUnidadIdUsuario(id: string): Observable<Unidad>{
+
+  const url = `${ this.urlBackend}/usuario/`;
+  return this.http.get<Unidad>(url)
+  }
+
+obtenerUnidadUsuario(): Observable<Unidad[]>{
+
+  const url = `${ this.urlBackend}/usuario`;
+  return this.http.get<Unidad[]>(url)
+  }  
+obtenerRolUsuario(): Observable<any[]>{
+
+  const url = `${ this.urlBackend}/usuario/rol/rol`;
+  return this.http.get<any[]>(url)
+  }    
 }

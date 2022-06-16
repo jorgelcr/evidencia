@@ -24,16 +24,6 @@ export class DebilidadesComponent {
 
   }
   
-openDialog2() {
-  const dialogRef = this.dialog.open(ModalDebilidades2, {
-    height: '600px',
-    width: '700px',
-  });
-
-/*   dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  }); */
-}
 }
 
 @Component({
@@ -44,10 +34,3 @@ openDialog2() {
 
 export class ModalDebilidades1 {}
 
-@Component({
-  selector: 'modal-debilidades-2',
-  templateUrl: './modal-debilidades-2.html',
-  styleUrls: ['./debilidades.component.css']
-})
-
-export class ModalDebilidades2 {}

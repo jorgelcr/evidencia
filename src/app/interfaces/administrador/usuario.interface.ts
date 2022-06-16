@@ -5,4 +5,6 @@ export interface Usuario{
     apellidos_usuario: string;
     correo_usuario   : string;
     contrasena       : string;
+    estado?          : boolean;  
+    nombre_unidad?   : string;
 }

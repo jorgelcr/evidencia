@@ -1,43 +1,47 @@
-<h2 mat-dialog-title>Crear Usuarios</h2>
+<h2 mat-dialog-title>{{titulo}}</h2>
 
 <form [formGroup]="formularioUsuario" (ngSubmit)="guardar()">
 
   <div class="modal-body col-12">
     <span>Rut</span>
     <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
-    <input formControlName="rut" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Rut">
+    <input formControlName="rut" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Rut"
+    oninput="this.value = this.value.toUpperCase()">
 
     <div class="row mt-3">
       <div class=" col-6">
         <span>Nombres</span>
         <div class="col-sm-12">
-          <input formControlName="nombres_usuario" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Nombres">
+          <input formControlName="nombres_usuario" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Nombres"
+          oninput="this.value = this.value.toUpperCase()">
         </div>
       </div>
       <div class=" col-6">
         <span>Apellidos</span>
         <div class="col-sm-12">
           <input formControlName="apellidos_usuario" type="text" class="form-control border-0 border-bottom"
-            placeholder="Ingrese Apellidos">
+            placeholder="Ingrese Apellidos" oninput="this.value = this.value.toUpperCase()">
         </div>
       </div>
     </div>
 
     <div class="mt-3">
       <span>Email</span>
-      <input formControlName="correo_usuario" type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Email">
+      <input formControlName="correo_usuario" type="email" class="form-control border-0 border-bottom" placeholder="Ingrese Email"
+      oninput="this.value = this.value.toUpperCase()">
     </div>
 
     <div class="mt-3">
       <span>Password</span>
-      <input formControlName="contrasena" type="Password" class="form-control border-0 border-bottom" placeholder="Ingrese Password">
+      <input formControlName="contrasena" type="Password" class="form-control border-0 border-bottom" placeholder="Ingrese Password"
+      oninput="this.value = this.value.toUpperCase()">
     </div>
     
     <div class="mt-3">
       <span>Unidad</span>
       <select class="form-select form-select-sm" formControlName="fk_id_unidad">
         <option value="" >ELIJA TIPO DE Unidad</option>
-        <option *ngFor="let item of listaUnidades" 
+        <option *ngFor="let item of listaUnidad" selected
                 [value]="item.id_unidad | number">{{item.nombre_unidad}}</option>
       </select>
       <span   *ngIf="campoNoEsValido('fk_id_unidad')" class="form-text text-danger">
@@ -47,29 +51,50 @@
     <div class="mt-3">
       <span>Roles</span>
       <select class="form-select form-select-sm" formControlName="fk_id_rol">
-        <option value="" >ELIJA TIPO DE ROL</option>
+
         <option *ngFor="let item of listaRol" 
                 [value]="item.id_rol | number">{{item.nombre_rol}}</option>
+                
       </select>
       <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
         Elija algun Rol</span>
     </div>
 
+    <div class="mt-1 col-5" *ngIf="estado==true">
+      <span>Estado</span>
+      <select class="form-select form-select-sm" formControlName="estado">
+        <option [value]="true">Activo</option>
+        <option [value]="false">Inactivo</option>
+      </select>
+      <span *ngIf="campoNoEsValido('estado')" class="form-text text-danger">
+        Elija alguna Unidad</span>
+    </div>
+
+
   </div>
 
-<mat-dialog-actions align="end" >
-  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
-  <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button >Guardar</button>
-</mat-dialog-actions>
+  <mat-dialog-actions align="end" class="mt-5">
+    <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+    <div *ngIf="estado == false">
+
+      <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+    </div>
+
+    <div *ngIf="estado==true">
+      <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" mat-button cdkFocusInitial
+        mat-button>Guardar</button>
+    </div>
+
+  </mat-dialog-actions>
 
 
 </form>
 
-<span>VALUE</span>
+<!-- <span>VALUE</span>
 <pre>{{ formularioUsuario.value | json}}</pre>
-<!-- <span>VALID</span>
-<pre>{{ formularioUsuario.valid}}</pre>
-<span>PRISTINE</span>
+ <span>VALID</span>
+<pre>{{ formularioUsuario.valid}}</pre> -->
+<!--<span>PRISTINE</span>
 <pre>{{ formularioUsuario.pristine}}</pre>
 <span>TOUCHED</span>
 <pre>{{ formularioUsuario.touched}}</pre> -->
