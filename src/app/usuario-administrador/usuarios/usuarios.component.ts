@@ -142,7 +142,7 @@ export class DialogContentExampleDialog implements OnInit {
 
    }
  
-ngOnInit(): void {
+ ngOnInit(): void {
    this.cargarUsuarioModal();
    this.cargarUnidad();
    this.cargarRol();

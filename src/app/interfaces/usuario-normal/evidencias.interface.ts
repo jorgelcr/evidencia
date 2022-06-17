@@ -10,3 +10,15 @@ export interface Evidencias{
     nombre_debilidades: string;
     id_estados: number;
 }
+
+export interface GuardarEvidencias{
+    nombre_cliente: string;
+    fk_id_usuario: number;
+    fk_id_debilidades: number;
+    fk_id_unidad: number;
+    fk_id_criterios: number;
+    fk_id_registros: number;
+    fk_id_procesos: number;
+    fk_id_estado: number;
+    fk_id_ambito_academico: number;
+}

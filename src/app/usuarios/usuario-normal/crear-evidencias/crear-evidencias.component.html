@@ -4,6 +4,7 @@
 </head>
 
 <body class="bg-light col-10 mx-auto ">
+  
   <div class="card ">
     <div class="card-body">
 
@@ -29,14 +30,14 @@
           <div class="col-sm-6">
 
             <h4 class="fw-bold mb-3">N Folio</h4>
-            <form (ngSubmit)="guardar()" [formGroup]="miFormulario" class="needs-validation" novalidate>
+            <form [formGroup]="formularioEvidencias" (ngSubmit)="guardarevidencia()">
               <div class="row g-3">
 
                 <div class="mb-3">
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Usuario</label>
                     <div class="col-sm-8 ">
-                      <input formControlName="codigo" class="col-12 " type="text" >
+                      <input formControlName="nombre_cliente" class="col-12 " placeholder="" type="text" >
                     </div>
                   </div>
                 </div>
@@ -45,9 +46,10 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Unidad</label>
                     <div class="col-sm-8">
-                      <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
+                      <select class="border-dark border-dark form-select form-select-sm" formControlName="fk_id_unidad" aria-label=".form-select-sm example">
                         <option selected>Selecciona una opcion</option>
-                        <option *ngFor="let item of listaGetEvidencias">{{item.nombre_unidad}}</option>
+                        <option *ngFor="let item of listaGetUnidad" selected
+                        [value]="item.id_unidad | number">{{item.nombre_unidad}}</option>
                         
                       </select>
                     </div>
@@ -60,7 +62,7 @@
                     <div class="col-sm-8">
                       <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected>Selecciona una opcion</option>
-                        <option *ngFor="let item of listaGetEvidencias">{{item.nombre_registros}}</option>
+                        <option *ngFor="let item of listaGetRegistro">{{item.nombre_registros}}</option>
                         
                       </select>
                     </div>
@@ -73,7 +75,7 @@
                     <div class="col-sm-8">
                       <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected>Selecciona una opcion</option>
-                        <option *ngFor="let item of listaGetEvidencias">{{item.nombre_ambito_academico}}</option>
+                        <option *ngFor="let item of listaGetAmbitoAcademico">{{item.nombre_ambito_academico}}</option>
                         
                       </select>
                     </div>
@@ -96,7 +98,7 @@
                 </div>
 
               </div>
-              <button class="btn btn-primary col-md-4 offset-md-1" type="submit">ddsdssdsdsdadd</button>
+              <button class="btn btn-primary col-md-4 offset-md-1" type="submit">Guardar</button>
 
             </form>
           </div>
@@ -123,7 +125,7 @@
                     <div class="col-sm-8">
                       <select class="border-dark form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected>Selecciona una opcion</option>
-                        <option *ngFor="let item of listaGetEvidencias">{{item.nombre_procesos}}</option>
+                        <option *ngFor="let item of listaGetProceso">{{item.nombre_procesos}}</option>
                         
                       </select>
                     </div>
@@ -159,7 +161,7 @@
                     <div class="col-sm-8">
                       <select class="border-dark form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected>Selecciona una opcion</option>
-                        <option *ngFor="let item of listaGetEvidencias">{{item.nombre_debilidades}}</option>
+                        <option *ngFor="let item of listaGetDebilidad">{{item.nombre_debilidades}}</option>
                         
                       </select>
                     </div>
