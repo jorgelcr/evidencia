@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Evidencias, GuardarEvidencias } from 'src/app/interfaces/usuario-normal/evidencias.interface';
 import { UsuarioNormalService } from 'src/app/services/usuario-normal.service';
 import Swal from 'sweetalert2';
@@ -24,16 +24,16 @@ export class CrearEvidenciasComponent implements OnInit {
   public listaGetProceso : any[] = [];
   public listaGetDebilidad : any[] = [];
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute) {
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute, private router: Router) {
       this.formularioEvidencias = this.fb.group({
-        nombre_cliente          : ['', Validators.required],
-        fk_id_usuario           : ['', Validators.required],
+        nombre_cliente          : ['pedro', Validators.required],
+        fk_id_usuario           : ['30', Validators.required],
         fk_id_debilidades       : ['', Validators.required],
         fk_id_unidad            : ['', Validators.required],
         fk_id_criterios         : ['', Validators.required], 
         fk_id_registros         : ['', Validators.required],
         fk_id_procesos          : ['', Validators.required],
-        fk_id_estado            : ['', Validators.required],
+        fk_id_estado            : ['1', Validators.required],
         fk_id_ambito_academico  : ['', Validators.required],
       })
     }
@@ -69,7 +69,27 @@ export class CrearEvidenciasComponent implements OnInit {
   }
 
   guardarevidencia(){
-    
+
+    const EVIDENCIAS: GuardarEvidencias = {
+      nombre_cliente: this.formularioEvidencias.get('nombre_cliente')?.value,
+      fk_id_usuario: this.formularioEvidencias.get('fk_id_usuario')?.value,
+      fk_id_debilidades: this.formularioEvidencias.get('fk_id_debilidades')?.value,
+      fk_id_unidad: this.formularioEvidencias.get('fk_id_unidad')?.value,
+      fk_id_criterios: this.formularioEvidencias.get('fk_id_criterios')?.value,
+      fk_id_registros: this.formularioEvidencias.get('fk_id_registros')?.value,
+      fk_id_procesos: this.formularioEvidencias.get('fk_id_procesos')?.value,
+      fk_id_estado: this.formularioEvidencias.get('fk_id_estado')?.value,
+      fk_id_ambito_academico: this.formularioEvidencias.get('fk_id_ambito_academico')?.value,
+    }
+
+    console.log(EVIDENCIAS);
+    this.UsuarioNormalService.guardarEvidencia(EVIDENCIAS).subscribe(data => {
+
+    }, error => {
+      console.log(error);
+      this.formularioEvidencias.reset();
+    });
+    //this.router.navigate(['/']);
   }
   
 

@@ -93,7 +93,7 @@ import { GuardarEvidencias } from '../interfaces/usuario-normal/evidencias.inter
 
   guardarEvidencia(evidencia: GuardarEvidencias): Observable<GuardarEvidencias>{
 
-    const url = `${ this.urlBackend}/postevidencia/evidencia`;
+    const url = `${ this.urlBackend}/postevidencia`;
     return this.http.post<GuardarEvidencias>(url, evidencia).
     pipe(
       tap(() =>{
