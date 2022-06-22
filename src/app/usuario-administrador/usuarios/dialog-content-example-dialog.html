@@ -39,9 +39,9 @@
     
     <div class="mt-3">
       <span>Unidad</span>
-      <select class="form-select form-select-sm" formControlName="fk_id_unidad">
-        <option value="" >ELIJA TIPO DE Unidad</option>
-        <option *ngFor="let item of listaUnidad" selected
+      <select class="form-select form-select-sm" formControlName="fk_id_unidad" selected>
+        <option value="" >ELIJA TIPO DE Criterio</option>
+        <option *ngFor="let item of listaUnidad" 
                 [value]="item.id_unidad | number">{{item.nombre_unidad}}</option>
       </select>
       <span   *ngIf="campoNoEsValido('fk_id_unidad')" class="form-text text-danger">
@@ -50,8 +50,8 @@
     
     <div class="mt-3">
       <span>Roles</span>
-      <select class="form-select form-select-sm" formControlName="fk_id_rol">
-
+      <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+        <option value="">----Selecione un Rol----</option>
         <option *ngFor="let item of listaRol" 
                 [value]="item.id_rol | number">{{item.nombre_rol}}</option>
                 
@@ -62,8 +62,8 @@
 
     <div class="mt-1 col-5" *ngIf="estado==true">
       <span>Estado</span>
-      <select class="form-select form-select-sm" formControlName="estado">
-        <option [value]="true">Activo</option>
+      <select class="form-select form-select-sm" formControlName="estado" selected>
+        <option *ngIf="estado === true" [value]="true">Activo</option>
         <option [value]="false">Inactivo</option>
       </select>
       <span *ngIf="campoNoEsValido('estado')" class="form-text text-danger">
@@ -73,7 +73,7 @@
 
   </div>
 
-  <mat-dialog-actions align="end" class="mt-5">
+  <mat-dialog-actions align="end" >
     <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
     <div *ngIf="estado == false">
 

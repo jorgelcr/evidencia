@@ -36,8 +36,10 @@ export class UsuariosComponent  implements OnInit {
       data: {id_usuarios: usuario?.id_usuarios, rut: usuario?.rut, 
         nombres_usuario: usuario?.nombres_usuario, apellidos_usuario: usuario?.apellidos_usuario,
         correo_usuario: usuario?.correo_usuario, contrasena: usuario?.contrasena,
-         estado: usuario?.estado}
+         estado: usuario?.estado, fk_id_unidad: usuario?.fk_id_unidad,  fk_id_rol: usuario?.fk_id_rol
+        }
     })
+    console.log("La clave es: ", usuario?.id_usuarios)
   }
 
   obtenerUsuario(){
@@ -118,7 +120,9 @@ export class DialogContentExampleDialog implements OnInit {
   formularioUsuario!: FormGroup;
   titulo = 'Crear Usuario'
   estado: boolean = false; 
- 
+  
+
+
   listaUsuario : Usuario[] = [];
   listaUnidad : Unidad[] = [];
   listaRol : any[] = [];
@@ -127,7 +131,7 @@ export class DialogContentExampleDialog implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: {id_usuarios: string, rut: string,
                                            nombres_usuario: string, apellidos_usuario: string,
                                            correo_usuario: string, contrasena: string,
-                                           estado: boolean}) { 
+                                           estado?: boolean, fk_id_unidad: string, fk_id_rol: string}) { 
 
     this.formularioUsuario = this.fb.group({
     rut               : [data.rut,[ Validators.required, , Validators.minLength(3)]],
@@ -135,20 +139,20 @@ export class DialogContentExampleDialog implements OnInit {
     apellidos_usuario : [data.apellidos_usuario, [Validators.required, , Validators.minLength(3)]],
     correo_usuario    : [data.correo_usuario, [Validators.required, , Validators.minLength(3)]],
     contrasena        : [data.contrasena, [Validators.required, , Validators.minLength(3)]],
-    estado            : [true, Validators.required],
-    fk_id_unidad      : ['', Validators.required],
-    fk_id_rol         : ['', Validators.required],
+    estado            : [data.estado, /* Validators.required */],
+    fk_id_unidad      : [data.fk_id_unidad, Validators.required],
+    fk_id_rol         : [data.fk_id_rol, Validators.required],
   })
 
    }
- 
+
+
 ngOnInit(): void {
    this.cargarUsuarioModal();
    this.cargarUnidad();
    this.cargarRol();
   }
 
-              
 
   campoNoEsValido(campo: string){
     return this.formularioUsuario.controls[campo].errors &&
@@ -197,7 +201,9 @@ ngOnInit(): void {
       if (this.data.id_usuarios){
       this.estado = true;
       this.titulo = "Actualizar Usuario";
-      this.AdministradorService.obtenerUsuarioId(this.data.id_usuarios)
+      this.AdministradorService.obtenerUsuarioId(this.data.id_usuarios).subscribe(data =>
+        
+        console.log("la data es: ",data))
       }
         }
 

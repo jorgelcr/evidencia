@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
     import {MatInputModule} from '@angular/material/input';
     import {MatCardModule} from '@angular/material/card';
     import {MatDialogModule} from '@angular/material/dialog';
+    import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RouterModule } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
 
   ]
 })

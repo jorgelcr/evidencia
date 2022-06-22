@@ -17,7 +17,6 @@ import { AmbitoAcademicoComponent, ModalAmbitoAcademico1 } from './ambito-academ
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { GraficosComponent } from './graficos/graficos.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {NgForm} from '@angular/forms';
 import { booleanPipe } from '../pipes/boolean.pipe';
 @NgModule({
   declarations: [
@@ -41,7 +40,7 @@ import { booleanPipe } from '../pipes/boolean.pipe';
     ModalProcesos1,
     ModalAmbitoGeografico1,
     ModalAmbitoAcademico1,
-    booleanPipe
+    booleanPipe,
   ],
   imports: [
     CommonModule,

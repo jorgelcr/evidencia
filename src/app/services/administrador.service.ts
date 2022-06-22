@@ -10,6 +10,8 @@ import { Criterio } from '../interfaces/administrador/criterios.interface';
 import { Procesos } from '../interfaces/administrador/procesos.interface';
 import { tipoRegistros } from '../interfaces/administrador/tiposRegistros.intefrace';
 import { ambitoAcademico } from '../interfaces/administrador/ambitoAcademico.interface';
+import { Debilidad } from '../interfaces/administrador/debilidad.interface';
+import { ambitoGeografico } from '../interfaces/administrador/ambitoGeografico.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -130,14 +132,6 @@ buscarCriterio(termino: string): Observable<Criterio[]>{
     map((resp: any) => resp.resultados
 
   ))
-}
-
-/* ###################### Evidencias #####################################################*/
-
-obtenerEvidencias(): Observable<any>{
-
-  const url = `${ this.urlBackend}/evidencias`;
-  return this.http.get(url)
 }
 
 
@@ -322,7 +316,7 @@ guardarUsuario(usuario: Usuario): Observable<Usuario>{
 
 obtenerUsuario(): Observable<Usuario[]>{
 
-  const url = `${ this.urlBackend}/usuario/usuario`;
+  const url = `${ this.urlBackend}/usuario`;
   return this.http.get<Usuario[]>(url)
 }
 
@@ -361,15 +355,15 @@ buscarUsuario(termino: string): Observable<Usuario[]>{
   ))
 }
 
-obtenerUnidadIdUsuario(id: string): Observable<Unidad>{
+/* obtenerUnidadIdUsuario(id: string): Observable<Unidad>{
 
   const url = `${ this.urlBackend}/usuario/`;
   return this.http.get<Unidad>(url)
-  }
+  } */
 
 obtenerUnidadUsuario(): Observable<Unidad[]>{
 
-  const url = `${ this.urlBackend}/usuario`;
+  const url = `${ this.urlBackend}/usuario/unidad/usuario`;
   return this.http.get<Unidad[]>(url)
   }  
 obtenerRolUsuario(): Observable<any[]>{
@@ -377,4 +371,129 @@ obtenerRolUsuario(): Observable<any[]>{
   const url = `${ this.urlBackend}/usuario/rol/rol`;
   return this.http.get<any[]>(url)
   }    
+
+
+
+/* ###################### DEBILIDAD #####################################################*/
+
+guardarDebilidad(debilidad: Unidad): Observable<Unidad>{
+
+  const url = `${ this.urlBackend}/debilidad`;
+  return this.http.post<Unidad>(url, debilidad).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+
+}
+
+obtenerDebilidad(): Observable<Debilidad[]>{
+
+  const url = `${ this.urlBackend}/debilidad`;
+  return this.http.get<Debilidad[]>(url)
+}
+
+borrarDebilidad(id: string): Observable<Debilidad>{
+
+  const url = `${ this.urlBackend}/debilidad/`;
+  return this.http.delete<Debilidad>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+}
+
+obtenerDebilidadId(id: string): Observable<Debilidad>{
+
+  const url = `${ this.urlBackend}/debilidad/${id}`;
+  return this.http.get<Debilidad>(url)
+}
+
+actualizarDebilidad(id: string, debilidad: Debilidad): Observable<Debilidad>{
+
+  const url = `${ this.urlBackend}/debilidad/${id}`;
+  return this.http.put<Debilidad>(url, debilidad).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+  }
+
+
+buscarDebilidad(termino: string): Observable<Debilidad[]>{
+
+  const url = `${ this.urlBackend}/debilidad/${termino}`;
+  return this.http.get<Debilidad[]>(url)
+  .pipe(
+    map((resp: any) => resp.resultado
+
+  ))
+}  
+
+obtenerUnidadDebilidad(): Observable<Unidad[]>{
+
+  const url = `${ this.urlBackend}/debilidad/unidad/unidad`;
+  return this.http.get<Unidad[]>(url)
+  }  
+
+obtenerCriterioDebilidad(): Observable<Criterio[]>{
+
+  const url = `${ this.urlBackend}/debilidad/criterio/criterio`;
+  return this.http.get<Criterio[]>(url)
+ }
+  
+/* ###################### AMBITO GEOGRAFICO #####################################################*/
+
+guardarAmbitoGeografico(ambitogeografico: ambitoGeografico): Observable<ambitoGeografico>{
+
+  const url = `${ this.urlBackend}/ambitogeografico`;
+  return this.http.post<ambitoGeografico>(url, ambitogeografico).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+
+}
+
+obtenerAmbitoGeografico(): Observable<ambitoGeografico[]>{
+
+  const url = `${ this.urlBackend}/ambitogeografico`;
+  return this.http.get<ambitoGeografico[]>(url)
+}
+
+borrarAmbitoGeografico(id: string): Observable<ambitoGeografico>{
+
+  const url = `${ this.urlBackend}/ambitogeografico/`;
+  return this.http.delete<ambitoGeografico>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+}
+
+obtenerAmbitoGeograficoId(id: string): Observable<ambitoGeografico>{
+
+  const url = `${ this.urlBackend}/ambitogeografico/${id}`;
+  return this.http.get<ambitoGeografico>(url)
+  }
+
+actualizarAmbitoGeografico(id: string, ambitogeografico: ambitoGeografico): Observable<ambitoGeografico>{
+
+  const url = `${ this.urlBackend}/ambitogeografico/${id}`;
+  return this.http.put<ambitoGeografico>(url, ambitogeografico).
+  pipe(
+    tap(() =>{
+      this._refresh$.next();
+    })
+  )
+  }
+
+
+buscarAmbitoGeografico(termino: string): Observable<ambitoGeografico[]>{
+
+  const url = `${ this.urlBackend}/ambitogeografico/${termino}`;
+  return this.http.get<ambitoGeografico[]>(url)
+  .pipe(
+    map((resp: any) => resp.resultado
+
+  ))
+}
+
 }

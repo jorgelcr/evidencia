@@ -20,7 +20,8 @@
 
                 <i class="fa-solid fa-circle-plus fs-1 text-primary col-auto cursor-pointer" mat-button (click)="openDialog()"></i>
                   
-                <input class="fs-5 border-0 col border-bottom" type="text" placeholder="Buscar por Id">
+                <input class="fs-5 border-0 col border-bottom" type="text" placeholder="Buscar por Id"
+                (keyup)="buscar(termino.value)" #termino oninput="this.value = this.value.toUpperCase()">
 
               </div>
             </div>
@@ -42,19 +43,24 @@
                   </tr>
                 </thead>
                 <tbody class=" text-center align-middle">
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>proceso 1</td>
-                    <td>debilidad 1</td>
-                    <td>criterio 1</td>
-                    <td>Activo </td>
+                  <tr *ngFor="let item of listaDebilidad; let i = index">
+                    <th scope="row">{{item.codigo_debilidades}}</th>
+                    <td>{{item.nombre_debilidades}}</td>
+                    <td>{{item.nombre_criterios}}</td>
+                    <td>{{item.nombre_unidad}}</td>
+                    <td>{{item.estado_debilidades | boolean}}</td>
                     <td>
-                      <i class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye p-2" mat-button (click)="openDialog()" data-bs-target="#staticBackdrop2"></i>
-                      <i class="cursor-pointer text-primary fs-3 fa fa-solid text-danger fa-trash p-2"></i>
+                      <i class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye p-2" mat-button  data-bs-target="#staticBackdrop2"
+                      (click)="openDialog(item)"></i>
+                      <i (click)="borrarUnidades(item.id_debilidades)"
+                      class="cursor-pointer text-primary fs-3 fa fa-solid text-danger fa-trash p-2"></i>
                     </td>
                   </tr>
                 </tbody>
               </table>
+              <div class="text-danger text-center fs-3">
+                <span *ngIf="estadoBusqueda === false">Unidad no encontrada</span>
+              </div>
             </div>
           </div>
         </div>

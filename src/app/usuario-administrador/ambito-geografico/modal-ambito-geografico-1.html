@@ -1,16 +1,42 @@
-<h2 mat-dialog-title>Crear Ambito Geografico</h2>
+<h2 mat-dialog-title>{{titulo}}</h2>
 
+<form (ngSubmit)="guardar()" [formGroup]="formularioAmbitoGeografico">
 <mat-dialog-content class="mat-typography abc" >
 
     <div class="modal-body col-12">
         <span>Nombre Ambito Geografico</span>
         <!--   <input type="text" class="col-12 border-0 border-bottom" placeholder="Ingrese Rut"> -->
-        <input type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Ambito Geografico">
+        <input formControlName="nombre_ambito_geografico" type="text" class="form-control border-0 border-bottom" placeholder="Ingrese Nombre Ambito Geografico"
+        oninput="this.value = this.value.toUpperCase()">
+        <span *ngIf="campoNoEsValido('nombre_ambito_geografico')" class="form-text text-danger">
+          Codigo debe tener 3 caracteres</span>
 
+      </div>
+
+
+      <div class="mt-1 col-5" *ngIf="estado==true">
+        <span>Estado</span>
+        <select class="form-select form-select-sm" formControlName="estado_ambito_geografico">
+          <option selected [value]="true">Activo</option>
+          <option selected [value]="false">Inactivo</option>
+        </select>
+        <span *ngIf="campoNoEsValido('estado_ambito_geografico')" class="form-text text-danger">
+          Elija alguna Unidad</span>
       </div>
   
 </mat-dialog-content>
 <mat-dialog-actions align="end" >
-  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" mat-button [mat-dialog-close]="true" cdkFocusInitial>Guardar</button>
+  <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+  <div *ngIf="estado == false">
+
+    <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+  </div>
+
+  <div *ngIf="estado==true">
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" mat-button cdkFocusInitial
+      mat-button>Guardar</button>
+  </div>
+
 </mat-dialog-actions>
+
+</form>

@@ -7,4 +7,5 @@ export interface Usuario{
     contrasena       : string;
     estado?          : boolean;  
     nombre_unidad?   : string;
+    
 }
