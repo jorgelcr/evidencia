@@ -33,11 +33,13 @@ import { GuardarEvidencias } from '../interfaces/usuario-normal/evidencias.inter
 
   /* ###################### Obtener Get Usuario #####################################################*/
   
-  obtenerGetUsuario(): Observable<any>{
+  obtenerGetUsuario(correo: string, pass: string): Observable<any>{
   
-    const url = `${ this.urlBackend}/getusuario/usuario`;
+    const url = `${ this.urlBackend}/getusuario/${correo}/${pass}`;
     return this.http.get(url)
   }
+
+
   
   /* ###################### Obtener Get Unidad #####################################################*/
   
@@ -60,6 +62,14 @@ import { GuardarEvidencias } from '../interfaces/usuario-normal/evidencias.inter
   obtenerGetAmbitoAcademico(): Observable<any>{
   
     const url = `${ this.urlBackend}/getambitoacademico/academico`;
+    return this.http.get(url)
+  }
+
+  /* ###################### Obtener Get Ambito Geografico #####################################################*/
+  
+  obtenerGetAmbitoGeografico(): Observable<any>{
+  
+    const url = `${ this.urlBackend}/getambitogeografico/geografico`;
     return this.http.get(url)
   }
   

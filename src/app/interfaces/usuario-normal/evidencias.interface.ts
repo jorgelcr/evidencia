@@ -1,9 +1,11 @@
 export interface Evidencias{
     id_evidencias: number;
+    id_usuarios: number;
     nombres_usuario: string;
     nombre_unidad: string;
     nombre_registros: string;
     nombre_ambito_academico: string;
+    nombre_ambito_geografico: string;
     nombre_criterios: string;
     correo_usuario: string;
     nombre_procesos: string;
@@ -21,4 +23,5 @@ export interface GuardarEvidencias{
     fk_id_procesos: number;
     fk_id_estado: number;
     fk_id_ambito_academico: number;
+    fk_id_ambito_geografico: number;
 }
