@@ -35,7 +35,7 @@ export class CrearEvidenciasComponent implements OnInit {
 
   constructor(private fb: FormBuilder, public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute, private router: Router) {
       this.formularioEvidencias = this.fb.group({
-        nombre_cliente          : ['sdsd', Validators.required],
+        nombre_cliente          : ['pedro', Validators.required],
         fk_id_usuario           : ['35', Validators.required],
         fk_id_debilidades       : ['', Validators.required],
         fk_id_unidad            : ['', Validators.required],

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { GuardarEvidencias } from '../interfaces/usuario-normal/evidencias.interface';
+import { Evidencias, GuardarEvidencias } from '../interfaces/usuario-normal/evidencias.interface';
 
 
 @Injectable({
@@ -29,7 +29,36 @@ import { GuardarEvidencias } from '../interfaces/usuario-normal/evidencias.inter
     const url = `${ this.urlBackend}/evidencias`;
     return this.http.get(url)
   }
+
+  /* ###################### Borrar evidencias #####################################################*/
+
+  borrarEvidencias(id: string): Observable<Evidencias>{
+
+    const url = `${ this.urlBackend}/deleteevidencias/`;
+    return this.http.delete<Evidencias>(url + id);
+    /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
+  }
+
+/* ###################### Actualizar evidencias #####################################################*/
+
+  actualizarEvidencias(id: string, usuario: Evidencias): Observable<Evidencias>{
+
+    const url = `${ this.urlBackend}/putevidencias/${id}`;
+    return this.http.put<Evidencias>(url, usuario).
+    pipe(
+      tap(() =>{
+        this._refresh$.next();
+      })
+    )
+  }
+
+  /* ###################### Consultas por id evidencias #####################################################*/
   
+  obtenerEvidenciasId(id: string): Observable<Evidencias>{
+
+    const url = `${ this.urlBackend}/getidevidencia/${id}`;
+    return this.http.get<Evidencias>(url)
+    }
 
   /* ###################### Obtener Get Usuario #####################################################*/
   

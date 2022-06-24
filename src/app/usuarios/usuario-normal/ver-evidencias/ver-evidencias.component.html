@@ -68,8 +68,9 @@
                       </mat-icon>
                       <mat-icon class="icon-pointer ms-2 " [routerLink]="['../crear-evidencia']"><i
                           class="fa fa-regular text-primary fa-pen-to-square w-input"></i></mat-icon>
-                      <mat-icon class="icon-pointer ms-2" [routerLink]="['../crear-evidencia']"><i
+                      <mat-icon class="icon-pointer ms-2"><i (click)="borrarEvidencia(item.id_evidencias)"
                           class="fa fa-solid text-danger fa-trash w-input"></i></mat-icon>
+                          
                     </td>
                   </tr>
                 </tbody>

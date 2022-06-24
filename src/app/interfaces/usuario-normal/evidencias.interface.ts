@@ -25,3 +25,14 @@ export interface GuardarEvidencias{
     fk_id_ambito_academico: number;
     fk_id_ambito_geografico: number;
 }
+
+export interface Obteneridevidencias{
+    fk_id_debilidades: number;
+    fk_id_unidad: number;
+    fk_id_criterios: number;
+    fk_id_registros: number;
+    fk_id_procesos: number;
+    fk_id_estado: number;
+    fk_id_ambito_academico: number;
+    fk_id_ambito_geografico: number;
+}
