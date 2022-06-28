@@ -111,7 +111,7 @@ export class CrearEvidenciasComponent implements OnInit {
     console.log(EVIDENCIAS);
     this.UsuarioNormalService.guardarEvidencia(EVIDENCIAS).subscribe(data => {
       Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-      this.router.navigate(['../ver-evidencias']);
+      this.router.navigate(['/usuario-normal/ver-evidencias']);
     }, error => {
       console.log(error);
       Swal.fire('Error', "No se ha podido guardar los datos", 'error');
