@@ -57,17 +57,15 @@
 
                     <p *ngIf="item.id_estados == 3"><mat-icon class="ms-1 text-danger" ><i
                       class="fa fa-solid fa-user-xmark w-input"></i></mat-icon></p>
-                    
-                    
-                    
-                    
-                    
+
                     </td>
                     <td>
                       <mat-icon class="icon-pointer ms-2 text-primary" [routerLink]="['../crear-evidencia']"><i class="fa fa-solid fa-eye w-input"></i>
                       </mat-icon>
-                      <mat-icon class="icon-pointer ms-2 " [routerLink]="['../crear-evidencia']"><i
+
+                      <mat-icon class="icon-pointer ms-2"><i (click)="openDialog(item)"
                           class="fa fa-regular text-primary fa-pen-to-square w-input"></i></mat-icon>
+
                       <mat-icon class="icon-pointer ms-2"><i (click)="borrarEvidencia(item.id_evidencias)"
                           class="fa fa-solid text-danger fa-trash w-input"></i></mat-icon>
                           

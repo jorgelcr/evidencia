@@ -22,7 +22,7 @@ import { Evidencias, GuardarEvidencias } from '../interfaces/usuario-normal/evid
     }
 
   
-  /* ###################### Evidencias #####################################################*/
+  /* ###################### Consultas Evidencias #####################################################*/
   
   obtenerEvidencias(): Observable<any>{
   

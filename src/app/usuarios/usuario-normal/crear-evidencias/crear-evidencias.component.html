@@ -39,9 +39,7 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Usuario</label>
                       <div class="col-sm-8 ">
-                        
-                        <input formControlName="nombre_cliente" class="col-12 " placeholder="" type="text" >
-                        
+                        <input class="col-12 border-dark" formControlName="nombre_cliente" placeholder="" type="text" >
                       </div>
                     </div>
                   </div>
@@ -97,25 +95,12 @@
                           <option selected>Selecciona una opcion</option>
                           <option *ngFor="let item of listaGetCriterio" selected
                           [value]="item.id_criterios | number">{{item.nombre_criterios}}</option>
-                          
-                          
                         </select>
                       </div>
                     </div>
                   </div>
-  
                 </div>
-  
-                <button class="btn btn-primary col-md-4 offset-md-1" type="submit">Guardar</button>
-  
-              
-              <span>VALUE</span>
-              <pre>{{ formularioEvidencias.value | json}}</pre>
-              <span>VALID</span>
-              <pre>{{ formularioEvidencias.valid}}</pre>
             </div>
-  
-  
             <div class="col-sm-6">
   
               <h4 class="fw-bold mb-3">Fecha Actual</h4>
@@ -126,7 +111,7 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Email</label>
                       <div class="col-sm-8">
-                          <input class="col-12 border-dark" type="text" >
+                          <input class="col-12 border-dark" formControlName="correo_usuario" placeholder="" type="text" >
                       </div>
                     </div>
                   </div>
@@ -184,135 +169,132 @@
               </form>
             </div>
           </div>
-        
-        </form>
 
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Descripcion</label>
-          <div class="col-sm-9">
-            <textarea class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Descripcion</label>
+            <div class="col-sm-9">
+              <textarea formControlName="descripcion" class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Resultado</label>
-          <div class="col-sm-9">
-            <textarea class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Resultado</label>
+            <div class="col-sm-9">
+              <textarea formControlName="resultado" class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
           </div>
-        </div>
-
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Almacenamiento</label>
-          <div class="col-sm-9">
-            <input type="text" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+  
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Almacenamiento</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="almacenamiento" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+            </div>
           </div>
-        </div>
-
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Unidades y/o Personas Relacionadas a la
-            evidencia</label>
-          <div class="col-sm-9">
-            <textarea class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Unidades y/o Personas Relacionadas a la
+              evidencia</label>
+            <div class="col-sm-9">
+              <textarea formControlName="unidadpersonasevid" class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
           </div>
-        </div>
-
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Palabra clave</label>
-          <div class="col-sm-9">
-            <input type="text" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+  
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Palabra clave</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="palabraclave" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+            </div>
           </div>
-        </div>
-
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Nombre corto evidencia</label>
-          <div class="col-sm-9">
-            <input type="text" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+  
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Nombre corto evidencia</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="nomcortoevidencia" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+            </div>
           </div>
-        </div>
-
-
-        <div class="mb-3 row mt-4">
-          <div class="col-sm-6">
-
-            <h4 class="fw-bold mb-3">CANTIDAD ASISTENTES INTERNOS</h4>
-            <form class="needs-validation" novalidate>
-              <div class="row g-3">
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Autoridades</label>
-                  <div class="col-sm-2 col-4">
-                    <input type="text" class="form-control text-center" placeholder="0" aria-label="First name">
+  
+  
+          <div class="mb-3 row mt-4">
+            <div class="col-sm-6">
+  
+              <h4 class="fw-bold mb-3">CANTIDAD ASISTENTES INTERNOS</h4>
+              <form class="needs-validation" novalidate>
+                <div class="row g-3">
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Autoridades</label>
+                    <div class="col-sm-2 col-4">
+                      <input type="text" class="form-control text-center" placeholder="0" aria-label="First name">
+                    </div>
+                  </div>
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Administrativos</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
+                  </div>
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Docentes</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
+                  </div>
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Estudiantes</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
                   </div>
                 </div>
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Administrativos</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+  
+              </form>
+            </div>
+  
+  
+            <div class="col-sm-6">
+  
+              <h4 class="fw-bold mb-3">CANTIDAD ASISTENTES EXTERNOS</h4>
+              <form class="needs-validation" novalidate>
+                <div class="row g-3">
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Autoridades</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
+                  </div>
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Administrativos</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
+                  </div>
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Docentes</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
+                  </div>
+  
+                  <div class="form-group row mb-1">
+                    <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Estudiantes</label>
+                    <div class="col-sm-2 col-4 text-center">
+                      <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
+                    </div>
                   </div>
                 </div>
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Docentes</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
-                  </div>
-                </div>
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Estudiantes</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
-                  </div>
-                </div>
-              </div>
-
-            </form>
-          </div>
-
-
-          <div class="col-sm-6">
-
-            <h4 class="fw-bold mb-3">CANTIDAD ASISTENTES EXTERNOS</h4>
-            <form class="needs-validation" novalidate>
-              <div class="row g-3">
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Autoridades</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
-                  </div>
-                </div>
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Administrativos</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
-                  </div>
-                </div>
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Docentes</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
-                  </div>
-                </div>
-
-                <div class="form-group row mb-1">
-                  <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Estudiantes</label>
-                  <div class="col-sm-2 col-4 text-center">
-                    <input type="text" class="form-control col-4 text-center" placeholder="0" aria-label="First name">
-                  </div>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
           <div class="mb-5 mt-5 row">
             <button class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
             <button class="btn btn-danger col-md-4 offset-md-1" type="submit">Cancelar</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
-
-
 </body>

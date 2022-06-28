@@ -36,7 +36,8 @@ export class CrearEvidenciasComponent implements OnInit {
   constructor(private fb: FormBuilder, public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute, private router: Router) {
       this.formularioEvidencias = this.fb.group({
         nombre_cliente          : ['pedro', Validators.required],
-        fk_id_usuario           : ['35', Validators.required],
+        correo_usuario          : ['hpdroh@gmail.com', Validators.required],
+        fk_id_usuario           : ['39', Validators.required],
         fk_id_debilidades       : ['', Validators.required],
         fk_id_unidad            : ['', Validators.required],
         fk_id_criterios         : ['', Validators.required], 
@@ -44,7 +45,13 @@ export class CrearEvidenciasComponent implements OnInit {
         fk_id_procesos          : ['', Validators.required],
         fk_id_estado            : ['1', Validators.required],
         fk_id_ambito_academico  : ['', Validators.required],
-        fk_id_ambito_geografico  : ['', Validators.required],
+        fk_id_ambito_geografico : ['', Validators.required],
+        descripcion             : ['', Validators.required],
+        resultado               : ['', Validators.required],
+        almacenamiento          : ['', Validators.required],
+        unidadpersonasevid      : ['', Validators.required],
+        palabraclave            : ['', Validators.required],
+        nomcortoevidencia       : ['', Validators.required],
       })
     }
     
@@ -83,6 +90,7 @@ export class CrearEvidenciasComponent implements OnInit {
 
     const EVIDENCIAS: GuardarEvidencias = {
       nombre_cliente: this.formularioEvidencias.get('nombre_cliente')?.value,
+      correo_usuario: this.formularioEvidencias.get('correo_usuario')?.value,
       fk_id_usuario: this.formularioEvidencias.get('fk_id_usuario')?.value,
       fk_id_debilidades: this.formularioEvidencias.get('fk_id_debilidades')?.value,
       fk_id_unidad: this.formularioEvidencias.get('fk_id_unidad')?.value,
@@ -92,16 +100,26 @@ export class CrearEvidenciasComponent implements OnInit {
       fk_id_estado: this.formularioEvidencias.get('fk_id_estado')?.value,
       fk_id_ambito_academico: this.formularioEvidencias.get('fk_id_ambito_academico')?.value,
       fk_id_ambito_geografico: this.formularioEvidencias.get('fk_id_ambito_geografico')?.value,
+      descripcion: this.formularioEvidencias.get('descripcion')?.value,
+      resultado: this.formularioEvidencias.get('resultado')?.value,
+      almacenamiento: this.formularioEvidencias.get('almacenamiento')?.value,
+      unidadpersonasevid: this.formularioEvidencias.get('unidadpersonasevid')?.value,
+      palabraclave: this.formularioEvidencias.get('palabraclave')?.value,
+      nomcortoevidencia: this.formularioEvidencias.get('nomcortoevidencia')?.value,
     }
 
     console.log(EVIDENCIAS);
     this.UsuarioNormalService.guardarEvidencia(EVIDENCIAS).subscribe(data => {
-
+      Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
+      this.router.navigate(['../ver-evidencias']);
     }, error => {
       console.log(error);
+      Swal.fire('Error', "No se ha podido guardar los datos", 'error');
       this.formularioEvidencias.reset();
     });
-    //this.router.navigate(['/']);
+
+    
+    
   }
   
 

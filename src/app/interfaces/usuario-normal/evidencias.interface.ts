@@ -15,6 +15,7 @@ export interface Evidencias{
 
 export interface GuardarEvidencias{
     nombre_cliente: string;
+    correo_usuario: string;
     fk_id_usuario: number;
     fk_id_debilidades: number;
     fk_id_unidad: number;
@@ -24,9 +25,17 @@ export interface GuardarEvidencias{
     fk_id_estado: number;
     fk_id_ambito_academico: number;
     fk_id_ambito_geografico: number;
+    descripcion: string;
+    resultado: string;
+    almacenamiento: string;
+    unidadpersonasevid: string;
+    palabraclave: string;
+    nomcortoevidencia: string;
 }
 
 export interface Obteneridevidencias{
+    nombre_cliente: string;
+    correo_usuario: string;
     fk_id_debilidades: number;
     fk_id_unidad: number;
     fk_id_criterios: number;

@@ -102,6 +102,20 @@ export class VerEvidenciasComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerEvidencias();
   }
+
+  openDialog(usuario?: any) {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog12,{ disableClose: true ,
+      height: '600px',
+      width: '700px',
+      data: {id_usuarios: usuario?.id_usuarios, rut: usuario?.rut, 
+        nombres_usuario: usuario?.nombres_usuario, apellidos_usuario: usuario?.apellidos_usuario,
+        correo_usuario: usuario?.correo_usuario, contrasena: usuario?.contrasena,
+         estado: usuario?.estado, fk_id_unidad: usuario?.fk_id_unidad,  fk_id_rol: usuario?.fk_id_rol
+        }
+    })
+    console.log("La clave es: ", usuario?.id_usuarios)
+  }
+
   displayedColumns: string[] = ['codigo', 'envio', 'unidad','proceso',
                                 'registro', 'ambito', 'estado', 'accion'];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
@@ -126,36 +140,54 @@ export class DialogContentExampleDialog12 implements OnInit {
   titulo = 'Crear Evidencias'
   estado: boolean = false; 
   
+  public listaGetCriterio : any[] = [];
+  public listaGetUsuario : Evidencias[] = [];
+  public listaGetUnidad : any[] = [];
+  public listaGetRegistro : any[] = [];
+  public listaGetAmbitoAcademico : any[] = [];
+  public listaGetAmbitoGeografico : any[] = [];
+  public listaGetProceso : any[] = [];
+  public listaGetDebilidad : any[] = [];
 
 
   listaEvidenias : Obteneridevidencias[] = [];
   //listaUnidad : Unidad[] = [];
   listaRol : any[] = [];
   constructor(public dialog: MatDialog, private fb: FormBuilder , 
-    private AdministradorService: AdministradorService,    
-    @Inject(MAT_DIALOG_DATA) public data: {id_usuarios: string, rut: string,
-                                           nombres_usuario: string, apellidos_usuario: string,
-                                           correo_usuario: string, contrasena: string,
-                                           estado?: boolean, fk_id_unidad: string, fk_id_rol: string}) { 
+    private UsuarioNormalService: UsuarioNormalService,    
+    @Inject(MAT_DIALOG_DATA) public data: {nombre_cliente: string, correo_usuario: string,
+                                           fk_id_debilidades: number, fk_id_unidad: number,
+                                           fk_id_criterios: number, fk_id_registros: number,
+                                           fk_id_procesos: number, fk_id_estado: number, 
+                                           fk_id_ambito_academico: number, fk_id_ambito_geografico: number}) { 
 
     this.formularioEvidencia = this.fb.group({
-    rut               : [data.rut,[ Validators.required, , Validators.minLength(3)]],
-    nombres_usuario   : [data.nombres_usuario, [Validators.required, , Validators.minLength(3)]],
-    apellidos_usuario : [data.apellidos_usuario, [Validators.required, , Validators.minLength(3)]],
-    correo_usuario    : [data.correo_usuario, [Validators.required, , Validators.minLength(3)]],
-    contrasena        : [data.contrasena, [Validators.required, , Validators.minLength(3)]],
-    estado            : [data.estado, /* Validators.required */],
-    fk_id_unidad      : [data.fk_id_unidad, Validators.required],
-    fk_id_rol         : [data.fk_id_rol, Validators.required],
+    nombre_cliente                : [data.nombre_cliente,[ Validators.required, , Validators.minLength(3)]],
+    correo_usuario                : [data.correo_usuario, [Validators.required, , Validators.minLength(3)]],
+    fk_id_debilidades             : [data.fk_id_debilidades, [Validators.required, , Validators.minLength(3)]],
+    fk_id_unidad                  : [data.fk_id_unidad, [Validators.required, , Validators.minLength(3)]],
+    fk_id_criterios               : [data.fk_id_criterios, [Validators.required, , Validators.minLength(3)]],
+    fk_id_registros               : [data.fk_id_registros, /* Validators.required */],
+    fk_id_procesos                : [data.fk_id_procesos, Validators.required],
+    fk_id_estado                  : [data.fk_id_estado, Validators.required],
+    fk_id_ambito_academico        : [data.fk_id_ambito_academico, Validators.required],
+    fk_id_ambito_geografico       : [data.fk_id_ambito_geografico, Validators.required],
   })
 
    }
 
  
  ngOnInit(): void {
-   this.cargarUsuarioModal();
-   this.cargarUnidad();
-   this.cargarRol();
+   
+
+   
+    this.obtenerGetUnidad();
+    this.obtenerGetRegistro();
+    this.obtenerGetAmbitoAcademico();
+    this.obtenerGetAmbitoGeografico();
+    this.obtenerGetCriterio();
+    this.obtenerGetProceso();
+    this.obtenerGetDebilidad();
   }
 
 
@@ -166,71 +198,70 @@ export class DialogContentExampleDialog12 implements OnInit {
   
   guardar(){
     
-      if ( this.formularioEvidencia.invalid ){
-        this.formularioEvidencia.markAllAsTouched();
-        Swal.fire('Error', "Lene los campos de forma correcta", 'error');
-    console.log("asdfghjklñ");
-        return;
-      }
-  
-  if (this.data.id_usuarios){
-      this.AdministradorService.actualizarUsuario(this.data.id_usuarios, this.formularioEvidencia.value)
-      .subscribe({
-        next: data =>{
-        Swal.fire('Actualizacion Exitosa', "Datos Actualizados Con Exito ", 'info');
-        }, error: error => {
-          Swal.fire('Error', "Error al Actualizar", 'error');
-        }
-      })
-  
   }
-  if(!this.data.id_usuarios){
-    this.AdministradorService.guardarUsuario( this.formularioEvidencia.value ).subscribe(
-      {
-        next: resp =>{
-    console.log("sdasdfghjklñskasskdksjdksdjskld")
-    
-      Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-      this.formularioEvidencia.reset();
-        
-    },error: error => {
-      Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');
-    
-    /* console.log(this.miFormulario.value) */
-    }
+
+
+  obtenerGetUnidad(){
+    this.UsuarioNormalService.obtenerGetUnidad().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetUnidad = data;
+      this.listaGetUnidad.reverse()
+      
     })
   }
-  
+
+  obtenerGetRegistro(){
+    this.UsuarioNormalService.obtenerGetRegistro().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetRegistro = data;
+      this.listaGetRegistro.reverse()
+      
+    })
   }
-  cargarUsuarioModal(){
-      if (this.data.id_usuarios){
-      this.estado = true;
-      this.titulo = "Actualizar Usuario";
-      this.AdministradorService.obtenerUsuarioId(this.data.id_usuarios).subscribe(data =>
-        
-        console.log("la data es: ",data))
-      }
-        }
 
-        
-  cargarUnidad(){
+  obtenerGetAmbitoAcademico(){
+    this.UsuarioNormalService.obtenerGetAmbitoAcademico().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetAmbitoAcademico = data;
+      this.listaGetAmbitoAcademico.reverse()
+      
+    })
+  }
 
-    this.AdministradorService.obtenerUnidadUsuario().subscribe((data: any) =>{
-      /*  console.log(data); */
-       //this.listaUnidad = data.resultado;
-   /*     this.listaUnidades.reverse() */
-     })
-   }
-   
- 
-   cargarRol(){
+  obtenerGetAmbitoGeografico(){
+    this.UsuarioNormalService.obtenerGetAmbitoGeografico().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetAmbitoGeografico = data;
+      this.listaGetAmbitoGeografico.reverse()
+      
+    })
+  }
 
-    this.AdministradorService.obtenerRolUsuario().subscribe((data: any) =>{
-      /*  console.log(data); */
-       this.listaRol = data.resultado;
-   /*     this.listaUnidades.reverse() */
-   console.log("ROLLLLLLLLLLLL",data.resultado )
-     })
-   }
+  obtenerGetCriterio(){
+    this.UsuarioNormalService.obtenerGetCriterio().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetCriterio = data;
+      this.listaGetCriterio.reverse()
+      
+    })
+  }
+
+  obtenerGetProceso(){
+    this.UsuarioNormalService.obtenerGetProceso().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetProceso = data;
+      this.listaGetProceso.reverse()
+      
+    })
+  }
+
+  obtenerGetDebilidad(){
+    this.UsuarioNormalService.obtenerGetDebilidad().subscribe(data =>{
+     /*  console.log(data); */
+      this.listaGetDebilidad = data;
+      this.listaGetDebilidad.reverse()
+      
+    })
+  }
 
  }

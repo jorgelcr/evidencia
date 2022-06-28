@@ -1,0 +1,152 @@
+<h2 mat-dialog-title>Modificar Evidencias</h2>
+
+<form [formGroup]="formularioEvidencia" (ngSubmit)="guardar()">
+
+  <div class="modal-body col-12">
+    
+
+    <div class="row mt-3">
+      <div class=" col-6">
+        <span>Nombre usuario</span>
+        <div class="col-sm-12">
+          <input formControlName="nombres_usuario" type="text" class="form-control border-0 border-bottom" placeholder="Usuario"
+          oninput="this.value = this.value.toUpperCase()">
+        </div>
+      </div>
+      <div class=" col-6">
+        <span>Correo usuario</span>
+        <div class="col-sm-12">
+          <input formControlName="apellidos_usuario" type="text" class="form-control border-0 border-bottom"
+            placeholder="Correo" oninput="this.value = this.value.toUpperCase()">
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="mt-3">
+      <span>Id debilidades</span>
+      <select class="form-select form-select-sm" formControlName="fk_id_debilidades" selected>
+        <option value="">----Selecione una debilidad----</option>
+        <option *ngFor="let item of listaGetDebilidad" 
+                [value]="item.id_debilidades | number">{{item.nombre_debilidades}}</option>
+                
+      </select>
+      <span  *ngIf="campoNoEsValido('fk_id_debilidades')" class="form-text text-danger">
+        Elija algun Rol</span>
+    </div>
+
+    <div class="mt-3">
+        <span>Id unidad</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione una unidad----</option>
+          <option *ngFor="let item of listaGetUnidad" 
+                  [value]="item.id_unidad | number">{{item.nombre_unidad}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Id criterios</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione un criterio----</option>
+          <option *ngFor="let item of listaGetCriterio" 
+                  [value]="item.id_criterios | number">{{item.nombre_criterios}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Id registros</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione un registro----</option>
+          <option *ngFor="let item of listaGetRegistro" 
+                  [value]="item.id_registros | number">{{item.nombre_registros}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Id procesos</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione un proceso----</option>
+          <option *ngFor="let item of listaGetProceso" 
+                  [value]="item.id_procesos | number">{{item.nombre_procesos}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Id estado</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione un estado----</option>
+          <option *ngFor="let item of listaRol" 
+                  [value]="item.id_rol | number">{{item.nombre_rol}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Id ambito academico</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione un ambito academico----</option>
+          <option *ngFor="let item of listaGetAmbitoAcademico" 
+                  [value]="item.id_ambito_academico | number">{{item.nombre_ambito_academico}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+      <div class="mt-3">
+        <span>Id ambito geografico</span>
+        <select class="form-select form-select-sm" formControlName="fk_id_rol" selected>
+          <option value="">----Selecione un ambito geografico----</option>
+          <option *ngFor="let item of listaGetAmbitoGeografico" 
+                  [value]="item.id_ambito_geografico | number">{{item.nombre_ambito_geografico}}</option>
+                  
+        </select>
+        <span  *ngIf="campoNoEsValido('fk_id_rol')" class="form-text text-danger">
+          Elija algun Rol</span>
+      </div>
+
+    
+
+
+  </div>
+
+  <mat-dialog-actions align="end" >
+    <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+    <div *ngIf="estado == false">
+
+      <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+    </div>
+
+    <div *ngIf="estado==true">
+      <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" mat-button cdkFocusInitial
+        mat-button>Guardar</button>
+    </div>
+
+  </mat-dialog-actions>
+
+
+</form>
+
+<!-- <span>VALUE</span>
+<pre>{{ formularioUsuario.value | json}}</pre>
+ <span>VALID</span>
+<pre>{{ formularioUsuario.valid}}</pre> -->
+<!--<span>PRISTINE</span>
+<pre>{{ formularioUsuario.pristine}}</pre>
+<span>TOUCHED</span>
+<pre>{{ formularioUsuario.touched}}</pre> -->
+
