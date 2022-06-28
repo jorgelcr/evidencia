@@ -26,7 +26,9 @@ export class TiposRegistrosComponent implements OnInit{
       data: {id_registros: tipoRegistros?.id_registros, nombre_registros: tipoRegistros?.nombre_registros, 
         estado_registros: tipoRegistros?.estado_registros}
     })
-
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 ngOnInit(): void {
 
@@ -145,8 +147,8 @@ campoNoEsValido(campo: string){
   
     if ( this.formularioTipoRegistros.invalid ){
       this.formularioTipoRegistros.markAllAsTouched();
-      Swal.fire('Error', "Lene los campos de forma correcta", 'error');
-  console.log("asdfghjklñ");
+     /*  Swal.fire('Error', "Lene los campos de forma correcta", 'error');
+  console.log("asdfghjklñ"); */
       return;
     }
 
@@ -168,7 +170,10 @@ if(!this.data.id_registros){
   console.log("sdasdfghjklñskasskdksjdksdjskld")
   
     Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-    this.formularioTipoRegistros.reset();
+  /*   this.formularioTipoRegistros.reset(); */
+  this.formularioTipoRegistros.reset({
+    estado_registros: true
+  })
       
   },error: error => {
     Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');

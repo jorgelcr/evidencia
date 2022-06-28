@@ -43,8 +43,17 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end" class="mt-5">
-  <button mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
-  <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+  <button class="me-2" mat-raised-button color="warn" mat-button mat-dialog-close>Cancel</button>
+  <div *ngIf="estado == false">
+
+    <button type="submit" mat-raised-button color="primary" mat-button cdkFocusInitial mat-button>Guardar</button>
+  </div>
+
+  <div *ngIf="estado==true">
+    <button type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" mat-button cdkFocusInitial
+      mat-button>Guardar</button>
+  </div>
+
 </mat-dialog-actions>
 
 </form>

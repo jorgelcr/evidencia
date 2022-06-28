@@ -20,8 +20,8 @@
         <option [value]="true">Activo</option>
         <option [value]="false">Inactivo</option>
       </select>
-      <span *ngIf="campoNoEsValido('estado_registros')" class="form-text text-danger">
-        Elija alguna Tipo Regisro</span>
+      <!-- <span *ngIf="campoNoEsValido('estado_registros')" class="form-text text-danger">
+        Elija alguna Tipo Regisro</span> -->
     </div>
     
   </mat-dialog-content>
@@ -41,3 +41,7 @@
   </mat-dialog-actions>
 
 </form>
+<span>VALUE</span>
+<pre>{{ formularioTipoRegistros.value | json}}</pre>
+ <span>VALID</span>
+<pre>{{ formularioTipoRegistros.valid}}</pre>

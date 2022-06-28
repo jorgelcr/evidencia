@@ -40,7 +40,7 @@
     <div class="mt-3">
       <span>Unidad</span>
       <select class="form-select form-select-sm" formControlName="fk_id_unidad" selected>
-        <option value="" >ELIJA TIPO DE Criterio</option>
+        <option value="" >ELIJA TIPO DE Unidad</option>
         <option *ngFor="let item of listaUnidad" 
                 [value]="item.id_unidad | number">{{item.nombre_unidad}}</option>
       </select>
@@ -90,10 +90,10 @@
 
 </form>
 
-<!-- <span>VALUE</span>
+<span>VALUE</span>
 <pre>{{ formularioUsuario.value | json}}</pre>
  <span>VALID</span>
-<pre>{{ formularioUsuario.valid}}</pre> -->
+<!-- <pre>{{ formularioUsuario.valid}}</pre> -->
 <!--<span>PRISTINE</span>
 <pre>{{ formularioUsuario.pristine}}</pre>
 <span>TOUCHED</span>

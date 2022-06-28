@@ -43,9 +43,9 @@
   
         <div class="mt-3">
           <span>Unidad</span>
-          <select class="form-select form-select-sm" formControlName="fk_id_unidad">
-            <option value="" >ELIJA TIPO DE Unidad</option>
-            <option *ngFor="let item of listaUnidad" selected
+          <select class="form-select form-select-sm" formControlName="fk_id_unidad" selected>
+            
+            <option *ngFor="let item of listaUnidad" 
                     [value]="item.id_unidad | number">{{item.nombre_unidad}}</option>
           </select>
           <span   *ngIf="campoNoEsValido('fk_id_unidad')" class="form-text text-danger">
@@ -53,10 +53,10 @@
         </div>
   
         <div class="mt-3">
-          <span>Unidad</span>
-          <select class="form-select form-select-sm" formControlName="fk_id_criterio">
+          <span>Criterio</span>
+          <select class="form-select form-select-sm" formControlName="fk_id_criterio" selected>
             <option value="" >ELIJA TIPO DE Criterio</option>
-            <option *ngFor="let item of listaCriterio" selected
+            <option *ngFor="let item of listaCriterio" 
                     [value]="item.id_criterios | number">{{item.nombre_criterios}}</option>
           </select>
           <span   *ngIf="campoNoEsValido('fk_id_criterio')" class="form-text text-danger">

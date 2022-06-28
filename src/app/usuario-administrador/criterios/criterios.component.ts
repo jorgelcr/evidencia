@@ -135,7 +135,6 @@ constructor( private fb: FormBuilder, private AdministradorService: Administrado
                }
               
 ngOnInit(): void {
-  console.log("la id es:",this.data.id_criterios)
     this.cargarUnidadModal();
 }
 campoNoEsValido(campo: string){
@@ -171,7 +170,10 @@ campoNoEsValido(campo: string){
       this.router.navigate(['usuario-administrador/criterios']);
 
       Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-      this.formularioCriterio.reset();
+      /* this.formularioCriterio.reset(); */
+      this.formularioCriterio.reset({
+        estado_criterios: true
+      })
     }, error: error => {
       Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');
     }

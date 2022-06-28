@@ -172,7 +172,10 @@ if(!this.data.id_ambito_academico){
   console.log("sdasdfghjklñskasskdksjdksdjskld")
   
     Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-    this.formularioAmbitoAcademico.reset();
+    /* this.formularioAmbitoAcademico.reset(); */
+    this.formularioAmbitoAcademico.reset({
+      estado_ambito_academico: true
+    })
       
   },error: error => {
     Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');

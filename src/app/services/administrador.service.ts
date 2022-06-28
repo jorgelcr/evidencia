@@ -71,7 +71,6 @@ export class AdministradorService {
     )
     }
   
-
   buscarUnidad(termino: string): Observable<Unidad[]>{
 
     const url = `${ this.urlBackend}/unidad/${termino}`;
@@ -234,7 +233,6 @@ actualizartiposRegistros(id: string, unidad: tipoRegistros): Observable<tipoRegi
   )
   }
 
-
 buscartiposRegistros(termino: string): Observable<tipoRegistros[]>{
 
   const url = `${ this.urlBackend}/tiporegistro/${termino}`;
@@ -288,7 +286,6 @@ actualizarAmbitoAcademico(id: string, ambitoAcademico: ambitoAcademico): Observa
     })
   )
   }
-
 
 buscarAmbitoAcademico(termino: string): Observable<ambitoAcademico[]>{
 
@@ -372,8 +369,6 @@ obtenerRolUsuario(): Observable<any[]>{
   return this.http.get<any[]>(url)
   }    
 
-
-
 /* ###################### DEBILIDAD #####################################################*/
 
 guardarDebilidad(debilidad: Unidad): Observable<Unidad>{
@@ -417,7 +412,6 @@ actualizarDebilidad(id: string, debilidad: Debilidad): Observable<Debilidad>{
     })
   )
   }
-
 
 buscarDebilidad(termino: string): Observable<Debilidad[]>{
 

@@ -35,13 +35,15 @@ export class DebilidadesComponent implements OnInit{
       width: '700px',
       data: {id_debilidades: debilidad?.id_debilidades, codigo_debilidades: debilidad?.codigo_debilidades, 
             nombre_debilidades: debilidad?.nombre_debilidades, descripcion_debilidades: debilidad?.descripcion_debilidades,
-            estado_debilidades: debilidad?.estado_debilidades}
+            estado_debilidades: debilidad?.estado_debilidades, fk_id_unidad: debilidad?.fk_id_unidad,
+            fk_id_criterio: debilidad?.fk_id_criterio}
     })
+    console.log("La clave es: ", debilidad?.fk_id_unidad)
 }
 
 obtenerDebilidad(){
   this.AdministradorService.obtenerDebilidad().subscribe(data =>{
-   /*  console.log(data); */
+    console.log(data);
     this.listaDebilidad = data;
     this.listaDebilidad.reverse()
     
@@ -106,6 +108,10 @@ console.log(termino)
 
 }
 
+
+/* ####################################### MODAL 1  ################################## */
+
+
 @Component({
   selector: 'modal-debilidades-1',
   templateUrl: './modal-debilidades-1.html',
@@ -127,19 +133,21 @@ export class ModalDebilidades1 implements OnInit{
   constructor(public dialog: MatDialog, private fb: FormBuilder, 
               private AdministradorService: AdministradorService,
               @Inject(MAT_DIALOG_DATA) public data: {id_debilidades: string, codigo_debilidades: string,
-                                                     nombre_debilidades: string, descripcion_debilidades: string
-                                                     , estado_debilidades: string}) { 
-
+                                                     nombre_debilidades: string, descripcion_debilidades: string,
+                                                     estado_debilidades: string, fk_id_unidad: string,
+                                                     fk_id_criterio: string}) { 
+                                                      
                 this.formularioDebilidad = this.fb.group({
                   codigo_debilidades      : [data.codigo_debilidades, [Validators.required, Validators.minLength(3)]],
                   nombre_debilidades      : [data.nombre_debilidades, [Validators.required, Validators.minLength(3)]],
                   descripcion_debilidades : [data.descripcion_debilidades, [Validators.required, Validators.minLength(3)]],
-                  fk_id_unidad            : ['', Validators.required],
-                  fk_id_criterio          : ['', Validators.required],
+                  fk_id_unidad            : [data.fk_id_unidad, Validators.required],
+                  fk_id_criterio          : [data.fk_id_criterio, Validators.required],
                   estado_debilidades      : [true, Validators.required]
                 });
+                console.log("WWWWWWWWWWWWWWWWWWWWWWW", data.fk_id_criterio)
               }
-
+            
 ngOnInit(): void {
   this.cargarUnidadModal();
   this.cargarUnidadDebilidad();
@@ -179,7 +187,10 @@ if(!this.data.id_debilidades){
   console.log("sdasdfghjklñskasskdksjdksdjskld")
   
     Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-    this.formularioDebilidad.reset();
+    /* this.formularioDebilidad.reset(); */
+    this.formularioDebilidad.reset({
+      estado_debilidades: true
+    })
       
   },error: error => {
     Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');
@@ -193,7 +204,7 @@ if(!this.data.id_debilidades){
 
 cargarUnidadModal(){
   if (this.data.id_debilidades){
-  console.log(this.data.id_debilidades)
+
   this.estado = true;
   this.titulo = "Actualizar Unidad";
   this.AdministradorService.obtenerDebilidadId(this.data.id_debilidades)

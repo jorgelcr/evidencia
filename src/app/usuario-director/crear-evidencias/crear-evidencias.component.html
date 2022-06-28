@@ -1,171 +1,210 @@
 <head>
-    <meta charset="utf-8" />
-    <title>Hola mundo con Javascript - victor robles</title>
-  </head>
-  
-  <body class="bg-light col-10 mx-auto ">
-    <div class="card ">
-      <div class="card-body">
-  
-        <div class="container">
-          <div class="row">
-              
-            <img src="./assets/img/ucm-logo1.jpeg" class="col-4 mb-3" alt="UCM">
-              <h3 class="text-center fs-2">Universidad Catolica del Maule</h3>
-            <h6 class="text-center fs-5 mb-5">Departamento de Aseguramiento de la Calidad</h6>
-          </div>
+  <meta charset="utf-8" />
+  <title>Hola mundo con Javascript - victor robles</title>
+</head>
+
+<body class="bg-light col-10 mx-auto ">
+  <div class="card ">
+    <div class="card-body">
+
+      <div class="container">
+        <div class="row">
+
+          <img src="./assets/img/ucm-logo1.jpeg" class="col-4 mb-3" alt="UCM">
+          <h3 class="text-center fs-2">Universidad Catolica del Maule</h3>
+          <h6 class="text-center fs-5 mb-5">Departamento de Aseguramiento de la Calidad</h6>
         </div>
-  
-        <div class="container mb-5">
-          <h2 class="text-center">Documento del Sistema de Gestion de Calidad</h2>
-          <h3 class="text-center">Registros del Sistema de Gestion de Calidad</h3>
-          <h4 class="text-center">Identificacion de Registros</h4>
-        </div>
-  
-  
-  
+      </div>
+
+      <div class="container mb-5">
+        <h2 class="text-center">Documento del Sistema de Gestion de Calidad</h2>
+        <h3 class="text-center">Registros del Sistema de Gestion de Calidad</h3>
+        <h4 class="text-center">Identificacion de Registros</h4>
+      </div>
+
+      <form [formGroup]="FormularioDirector" (ngSubmit)="guardar()">
+
         <div class="container">
           <div class="mb-3 row">
             <div class="col-sm-6">
-  
-              <h4 class="fw-bold mb-3">N Folio</h4>
+
+              <div class="">
+                <div class="form-group row">
+                  <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">N° folio</label>
+                  <div class="col-sm-8 ">
+<!--                     <input formControlName="numero_folio" class="fs-6 border-0 form-control-lg col-12" type="text"
+                      readonly> -->
+                      <span class="fs-5">{{obtenerNombreFolio}}</span>
+                  </div>
+                </div>
+              </div>
               <form class="needs-validation" novalidate>
                 <div class="row g-3">
-  
-                  <div class="mb-3">
+
+                  <div class="mb-3 ">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Usuario</label>
                       <div class="col-sm-8 ">
-                        <input class="col-12 " type="text" >
+                        <input [disabled]="estadoEvidenciaActualizar == false" class="col-12 " type="text">
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Unidad</label>
                       <div class="col-sm-8">
-                        <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_unidad"
+                          class="border-dark border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaUnidad" [value]="item.id_unidad | number">
+                            {{item.nombre_unidad}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_unidad')" class="form-text text-danger">
+                          Elija alguna Unidad</span>
+
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Tipo Registro</label>
                       <div class="col-sm-8">
-                        <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_registros"
+                          class="border-dark border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listatiposRegistros" [value]="item.id_registros | number">
+                            {{item.nombre_registros}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_registros')" class="form-text text-danger">
+                          Elija algun registro</span>
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Ambito</label>
                       <div class="col-sm-8">
-                        <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_ambito_academico"
+                          class="border-dark border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaAmbitoAcademico" [value]="item.id_ambito_academico | number">
+                            {{item.nombre_ambito_academico}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_ambito_academico')" class="form-text text-danger">
+                          Elija algun ambito academico</span>
+
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Criterio</label>
                       <div class="col-sm-8">
-                        <select class="border-dark border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_criterios"
+                          class="border-dark border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaCriterio" [value]="item.id_criterios | number">
+                            {{item.nombre_criterios}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_criterios')" class="form-text text-danger">
+                          Elija algun criterio</span>
+
                       </div>
                     </div>
                   </div>
-  
+
                 </div>
-  
-  
+
+
               </form>
             </div>
-  
-  
+
+
             <div class="col-sm-6">
-  
-              <h4 class="fw-bold mb-3">Fecha Actual</h4>
+
+              <div class="form-group row ">
+                <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">fecha Actual</label>
+                <div class="col-sm-8" *ngIf="estadoEvidencia == true">
+                <!--   <input type="text" formControlName="fecha_evidencia" class="fs-6 border-0 form-control-lg col-12" readonly> -->
+                  <span class="fs-5" >{{ fechaActual | date: 'shortDate' }}</span>
+                </div>
+
+                <div class="col-sm-8" *ngIf="estadoEvidencia == false">
+                  <input type="text" formControlName="fecha_evidencia" class="fs-6 border-0 form-control-lg" readonly>
+
+                </div>
+              </div>
               <form class="needs-validation" novalidate>
                 <div class="row g-3">
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Email</label>
                       <div class="col-sm-8">
-                          <input class="col-12 border-dark  " type="text" >
+                        <input class="col-12 border-dark  " type="text">
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Proceso</label>
                       <div class="col-sm-8">
-                        <select class="border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_procesos" class="border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaProcesos" [value]="item.id_procesos | number">
+                            {{item.nombre_procesos}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_procesos')" class="form-text text-danger">
+                          Elija algun proceso</span>
+
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">N° Plan de Mejoras</label>
                       <div class="col-sm-8">
-                          <input class="col-12 " type="text" >
+                        <input formControlName="numero_mejoras" class="col-12 " type="text">
+                        <span *ngIf="campoNoEsValido('fk_id_ambito_geografico')" class="form-text text-danger">
+                          Ingrese numero mejoras</span>
                       </div>
+
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Ambito Geografico</label>
                       <div class="col-sm-8">
-                        <select class="border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_ambito_geografico" class="border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example" selected>
+                          <option *ngFor="let item of listaAmbitoGeografico"
+                            [value]="item.id_ambito_geografico | number">{{item.nombre_ambito_geografico}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_ambito_geografico')" class="form-text text-danger">
+                          Elija algun ambito geografico</span>
+
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Debilidad</label>
                       <div class="col-sm-8">
-                        <select class="border-dark form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected></option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select formControlName="fk_id_debilidades" class="border-dark form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaDebilidad" [value]="item.id_debilidades | number">
+                            {{item.nombre_debilidades}}</option>
                         </select>
+                        <span *ngIf="campoNoEsValido('fk_id_debilidades')" class="form-text text-danger">
+                          Elija alguna debilidad</span>
                       </div>
                     </div>
                   </div>
@@ -173,51 +212,72 @@
               </form>
             </div>
           </div>
-  
+
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Descripcion</label>
             <div class="col-sm-9">
-              <textarea class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea formControlName="descripcion" autocomplete="off" class="border-dark form-control" id="exampleFormControlTextarea1"
+                rows="3"></textarea>
+              <span *ngIf="campoNoEsValido('descripcion')" class="form-text text-danger">
+                Ingrese alguna Descripcion</span>
             </div>
+
           </div>
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Resultado</label>
             <div class="col-sm-9">
-              <textarea class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea formControlName="resultado" autocomplete="off" class="border-dark form-control" id="exampleFormControlTextarea1"
+                rows="3"></textarea>
+              <span *ngIf="campoNoEsValido('resultado')" class="form-text text-danger">
+                Ingrese algun Resultado</span>
             </div>
+
           </div>
-  
+
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Almacenamiento</label>
             <div class="col-sm-9">
-              <input type="text" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+              <input formControlName="almacenamiento" autocomplete="off" type="text" class="border-dark form-control" id="firstName"
+                placeholder="" value="" required>
+              <span *ngIf="campoNoEsValido('almacenamiento')" class="form-text text-danger">
+                Ingrese algun Almacenamiento</span>
             </div>
           </div>
-  
+
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Unidades y/o Personas Relacionadas a la
               evidencia</label>
             <div class="col-sm-9">
-              <textarea class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea formControlName="unidades_personas_evidencias" autocomplete="off" class="border-dark form-control"
+                id="exampleFormControlTextarea1" rows="3"></textarea>
+              <span *ngIf="campoNoEsValido('unidades_personas_evidencias')" class="form-text text-danger">
+                Ingrese alguna Unidades y/o Personas Relacionadas a la
+                evidencia</span>
             </div>
           </div>
-  
+
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Palabra clave</label>
             <div class="col-sm-9">
-              <input type="text" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+              <input formControlName="palabra_clave" type="text" autocomplete="off" class="border-dark form-control" id="firstName"
+                placeholder="" value="" required>
+              <span *ngIf="campoNoEsValido('palabra_clave')" class="form-text text-danger">
+                Ingrese alguna Palabra clave</span>
             </div>
           </div>
-  
+
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Nombre corto evidencia</label>
             <div class="col-sm-9">
-              <input type="text" class="border-dark form-control" id="firstName" placeholder="" value="" required>
+              <input formControlName="nombre_corto_evidencia" autocomplete="off" type="text" class="border-dark form-control"
+                id="firstName" placeholder="" value="" required>
+              <span *ngIf="campoNoEsValido('nombre_corto_evidencia')" class="form-text text-danger">
+                Ingrese algun nombre corto</span>
             </div>
           </div>
-  
-  
-          <div class="mb-3 row mt-4">
+
+
+          <!--    <div class="mb-3 row mt-4">
             <div class="col-sm-6">
   
               <h4 class="fw-bold mb-3">CANTIDAD ASISTENTES INTERNOS</h4>
@@ -292,15 +352,22 @@
                 </div>
               </form>
             </div>
-            <div class="mb-5 mt-5 row">
-              <button class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
-              <button class="btn btn-danger col-md-4 offset-md-1" type="submit">Cancelar</button>
-            </div>
+          </div> -->
+          <div class="mb-5 mt-5 row">
+            <button class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
+
+            <button (click)="Volver()" [routerLink]="['../todas-evidencias']"
+              class="btn btn-danger col-md-4 offset-md-1" type="text">Cancelar</button>
+
           </div>
         </div>
-      </div>
+      </form>
     </div>
-  
-  
-  </body>
-  
+  </div>
+
+
+</body>
+<span>VALID</span>
+<pre>{{ FormularioDirector.valid}}</pre>
+<span>VALUE</span>
+<pre>{{ FormularioDirector.value | json}}</pre>
