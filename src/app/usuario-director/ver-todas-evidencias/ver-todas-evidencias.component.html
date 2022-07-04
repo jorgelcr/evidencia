@@ -45,16 +45,31 @@
                   <td>{{item.nombre_registros}}</td>
                   <td>{{item.nombre_debilidades}}</td>
                   <td>{{item.nombre_criterios}}</td>
-                  <td *ngIf="item.id_estados == 1" class="col-12 col-md-2"> 
+
+                  <td *ngIf="item.estado_evidencia_responsable == 0 && item.estado_evidencia_dac == 0 && item.revisado_reponsable == false && item.revisado_dac == false " class="col-12 col-md-2"> 
+                    <i class="text-dark me-2 fs-3 fa-solid fa-question"></i>
                     <i class="text-dark me-2 fs-3 fa-solid fa-question"></i>
                   </td>
-                  <td *ngIf="item.id_estados == 2" class="col-12 col-md-2">
+
+                  <td *ngIf="item.estado_evidencia_responsable == 1 && item.estado_evidencia_dac == 0 && item.revisado_reponsable == true && item.revisado_dac == false " class="col-12 col-md-2"> 
                     <i class="text-success me-2 fs-3 fa-solid fa-user-check"></i>
-                  </td>
-                  <td *ngIf="item.id_estados == 3" class="col-12 col-md-2">
-                    <i class="text-danger me-2 fs-3 fa-solid fa-user-xmark"></i>
+                    <i class="text-dark me-2 fs-3 fa-solid fa-question"></i>
                   </td>
 
+                  <td *ngIf="item.estado_evidencia_responsable == 2 && item.estado_evidencia_dac == 0 && item.revisado_reponsable == true && item.revisado_dac == false " class="col-12 col-md-2"> 
+                    <i class="text-danger me-2 fs-3 fa-solid fa-user-xmark"></i>
+                    <i class="text-dark me-2 fs-3 fa-solid fa-question"></i>
+                  </td>
+
+                  <td *ngIf="item.estado_evidencia_responsable == 1 && item.estado_evidencia_dac == 1 && item.revisado_reponsable == true && item.revisado_dac == true " class="col-12 col-md-2"> 
+                    <i class="text-success me-2 fs-3 fa-solid fa-user-check"></i>
+                    <i class="text-success me-2 fs-3 fa-solid fa-user-check"></i>
+                  </td>
+
+                  <td *ngIf="item.estado_evidencia_responsable == 1 && item.estado_evidencia_dac == 2 && item.revisado_reponsable == true && item.revisado_dac == true " class="col-12 col-md-2"> 
+                    <i class="text-danger me-2 fs-3 fa-solid fa-user-xmark"></i>
+                    <i class="text-danger me-2 fs-3 fa-solid fa-user-xmark"></i>
+                  </td>
                   <td>
                     <i [routerLink]="['../ver-todas-evidencias', item.id_evidencias]"
                       class="cursor-pointer text-info fs-3 fa fa-solid fa-eye me-2"></i>

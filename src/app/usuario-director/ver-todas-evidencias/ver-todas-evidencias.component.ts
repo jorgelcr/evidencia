@@ -22,7 +22,7 @@ export class VerTodasEvidenciasComponent implements OnInit {
 
   obtenerEvidencia(){
     this.directorService.obtenerEvidencias().subscribe(data =>{
-     /*  console.log(data); */
+      console.log("QQQQQQQQQQQQQQQQQQ",data);
       this.listaEvidencias = data;
       this.listaEvidencias.reverse()
       

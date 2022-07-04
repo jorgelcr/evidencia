@@ -40,20 +40,20 @@
                   </tr>
                 </thead>
                 <tbody class=" text-center align-middle">
-                  <tr>
-                    <th scope="row">Codigo</th>
-                    <td>Fecha Envio</td>
-                    <td>Unidad</td>
-                    <td>Proceso</td>
-                    <td>Registro</td>
-                    <td>Ambito</td>
+                  <tr *ngFor="let item of listaEvidencias">
+                    <th scope="row">{{item.numero_folio}}</th>
+                    <td>{{item.fecha_evidencia}}</td>
+                    <td>{{item.nombre_unidad}}</td>
+                    <td>{{item.nombre_procesos}}</td>
+                    <td>{{item.nombre_registros}}</td>
+                    <td>{{item.nombre_ambito_academico}}</td>
                     <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
                         placeholder="En espera" readonly>
                       <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
                       <i class="text-danger fs-4 fa-regular fa-x"></i>
                     </td>
                     <td>
-                      <i [routerLink]="['../crear-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
+                      <i [routerLink]="['../ver-mis-evidencias', item.id_evidencias]" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
                     </td>
                   </tr>
                 </tbody>

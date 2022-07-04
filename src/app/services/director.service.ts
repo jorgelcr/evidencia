@@ -12,6 +12,7 @@ import { Procesos } from '../interfaces/administrador/procesos.interface';
 import { tipoRegistros } from '../interfaces/administrador/tiposRegistros.intefrace';
 import { Unidad } from '../interfaces/administrador/unidad.inteface';
 import { evidenciaDirector } from '../interfaces/director/evidenciaDirector.interface';
+import { misEvidenciaDirector } from '../interfaces/director/misEvidenciasDirector.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -83,12 +84,16 @@ export class DirectorService {
 
   }
 
-
-  
   obtenerEvidencias(): Observable<evidenciaDirector[]>{
 
     const url = `${ this.urlBackend}/ver-director/evidencias`;
     return this.http.get<evidenciaDirector[]>(url)
+  }
+
+  obtenerEvidenciasDirector(): Observable<misEvidenciaDirector[]>{
+
+    const url = `${ this.urlBackend}/ver-director/evidencias/director`;
+    return this.http.get<misEvidenciaDirector[]>(url)
   }
 
   borrarEvidencia(id: string): Observable<evidenciaDirector>{

@@ -16,4 +16,9 @@ export interface evidenciaDirector {
     nombre_criterios    : string;
     tipo_estados    : string;
     id_estados    : number;
+    estado_evidencia_responsable: number;
+    estado_evidencia_dac: number;
+    revisado_reponsable: boolean;
+    revisado_dac: boolean;
+   
 }

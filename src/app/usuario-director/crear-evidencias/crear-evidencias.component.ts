@@ -96,7 +96,7 @@ export class CrearEvidenciasComponent implements OnInit {
         numero_folio    : letras_aleatorias(largoCadena, rangoLetras),
         fecha_evidencia : this.fechaActual,
         fk_id_estado    : '1',
-        fk_id_usuario   : '58'
+        fk_id_usuario   : '63'
 
       })
     }
