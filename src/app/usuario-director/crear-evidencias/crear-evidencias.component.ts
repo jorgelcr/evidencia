@@ -41,6 +41,7 @@ export class CrearEvidenciasComponent implements OnInit {
   estadoEvidenciaActualizar: boolean = false;
 
   obtenerNombreFolio: string = ''; 
+   id_rol : number = 0;
   constructor(private fb: FormBuilder, private directorService: DirectorService, private dp: DatePipe,
     private router: Router, private activatedRouter: ActivatedRoute) {
 
@@ -87,7 +88,7 @@ export class CrearEvidenciasComponent implements OnInit {
       fk_id_estado                  : [, Validators.required],
       fk_id_ambito_academico        : ['', Validators.required],
       fk_id_ambito_geografico       : ['', Validators.required],
-
+      id_rol :['', {disabled: this.id_rol === 5}]
     });
 
     this.id = this.activatedRouter.snapshot.paramMap.get('id')!;
@@ -96,7 +97,7 @@ export class CrearEvidenciasComponent implements OnInit {
         numero_folio    : letras_aleatorias(largoCadena, rangoLetras),
         fecha_evidencia : this.fechaActual,
         fk_id_estado    : '1',
-        fk_id_usuario   : '63'
+        fk_id_usuario   : '64'
 
       })
     }
@@ -121,10 +122,23 @@ export class CrearEvidenciasComponent implements OnInit {
 
   }
 
+  cityNameDisable() {
+    if (this.id_rol !== 5){
+    this.FormularioDirector.disable();
+  }else{
+    this.FormularioDirector.enable();
+  }
+}
+
   Volver() {
 
+    if (this.id_rol == 5){
+      this.router.navigate(['usuario-director/mis-evidencias']);
+    }else{
+   
     this.router.navigate(['usuario-director/todas-evidencias']);
   }
+}
 
   campoNoEsValido(campo: string) {
     return this.FormularioDirector.controls[campo].errors &&
@@ -160,7 +174,7 @@ export class CrearEvidenciasComponent implements OnInit {
             console.log("sdasdfghjklñskasskdksjdksdjskld")
 
             Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-            this.router.navigate(['usuario-director/todas-evidencias']);
+            this.router.navigate(['usuario-director/mis-evidencias']);
             this.FormularioDirector.reset();
 
           }, error: error => {
@@ -243,13 +257,14 @@ export class CrearEvidenciasComponent implements OnInit {
 
       this.estadoEvidencia = true;
       this.titulo = 'Editar Evidencia';
+  
       this.directorService.obtenerEvidenciaId(this.id).subscribe({
         next: (data: any) => {
           console.log("La Fecha es es: ", data[0].fecha_evidencia)
 
           this.obtenerNombreFolio = data[0].numero_folio,
           this.fechaActual        = data[0].fecha_evidencia,
-
+           this.id_rol = data[0].id_rol
           this.FormularioDirector.patchValue({
             numero_folio                 : data[0].numero_folio,
             fecha_evidencia              : data[0].fecha_evidencia,

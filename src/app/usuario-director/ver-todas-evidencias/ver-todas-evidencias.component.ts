@@ -29,7 +29,7 @@ export class VerTodasEvidenciasComponent implements OnInit {
     })
   }
 
-  borrarUnidades(id: any){
+/*   borrarUnidades(id: any){
  
     Swal.fire({
       title: '¿Está seguro?',
@@ -54,13 +54,13 @@ export class VerTodasEvidenciasComponent implements OnInit {
       },error: error => {
         Swal.fire('Error', "Error al eliminar, esta Evidencia esta en uso", 'error');
         console.log(error);
-        /* ERROR DESDE BACKEND */
-       /*  Swal.fire('Error', error.error.msg, 'error'); */
+       // ERROR DESDE BACKEND
+        //Swal.fire('Error', error.error.msg, 'error');
       }
     }
        
      ) }
    
   })
-}
+} */
 }

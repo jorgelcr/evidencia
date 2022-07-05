@@ -90,12 +90,6 @@ export class DirectorService {
     return this.http.get<evidenciaDirector[]>(url)
   }
 
-  obtenerEvidenciasDirector(): Observable<misEvidenciaDirector[]>{
-
-    const url = `${ this.urlBackend}/ver-director/evidencias/director`;
-    return this.http.get<misEvidenciaDirector[]>(url)
-  }
-
   borrarEvidencia(id: string): Observable<evidenciaDirector>{
 
     const url = `${ this.urlBackend}/ver-director/`;
@@ -118,5 +112,19 @@ export class DirectorService {
           this._refresh$.next();
         })
       ) */
+}
+
+          /* MIS EVIDENCIAS DIRECTOR */
+obtenerEvidenciasDirector(): Observable<misEvidenciaDirector[]>{
+
+  const url = `${ this.urlBackend}/misEvidencias-director/Evidencias`;
+  return this.http.get<misEvidenciaDirector[]>(url)
+}
+
+borrarMiEvidenciaDirector(id: string): Observable<misEvidenciaDirector>{
+
+  const url = `${ this.urlBackend}/misEvidencias-director/`;
+  return this.http.delete<misEvidenciaDirector>(url + id);
+  /*   return this.http.delete<Unidad>(`${ url }/${id}`). */
 }
 }

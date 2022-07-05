@@ -20,5 +20,4 @@ export interface evidenciaDirector {
     estado_evidencia_dac: number;
     revisado_reponsable: boolean;
     revisado_dac: boolean;
-   
 }

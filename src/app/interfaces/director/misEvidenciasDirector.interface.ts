@@ -15,4 +15,9 @@ export interface misEvidenciaDirector {
     nombre_registros     : string;
     nombre_ambito_academico      : string;
 
+    estado_evidencia_responsable: number;
+    estado_evidencia_dac: number;
+    revisado_reponsable: boolean;
+    revisado_dac: boolean;
+
 }

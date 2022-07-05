@@ -54,7 +54,7 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Unidad</label>
                       <div class="col-sm-8">
-                        <select formControlName="fk_id_unidad"
+                        <select [value]="cityNameDisable()" formControlName="fk_id_unidad"
                           class="border-dark border-dark form-select form-select-sm"
                           aria-label=".form-select-sm example">
                           <option *ngFor="let item of listaUnidad" [value]="item.id_unidad | number">
@@ -70,7 +70,7 @@
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Tipo Registro</label>
-                      <div class="col-sm-8">
+                      <div  class="col-sm-8">
                         <select formControlName="fk_id_registros"
                           class="border-dark border-dark form-select form-select-sm"
                           aria-label=".form-select-sm example">
@@ -90,7 +90,7 @@
                         <select formControlName="fk_id_ambito_academico"
                           class="border-dark border-dark form-select form-select-sm"
                           aria-label=".form-select-sm example">
-                          <option *ngFor="let item of listaAmbitoAcademico" [value]="item.id_ambito_academico | number">
+                          <option *ngFor="let item of listaAmbitoAcademico" [value]="item.id_ambito_academico | number" >
                             {{item.nombre_ambito_academico}}</option>
                         </select>
                         <span *ngIf="campoNoEsValido('fk_id_ambito_academico')" class="form-text text-danger">
@@ -170,7 +170,7 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">N° Plan de Mejoras</label>
                       <div class="col-sm-8">
-                        <input formControlName="numero_mejoras" class="col-12 " type="text">
+                        <input formControlName="numero_mejoras" class="col-12 " type="text" >
                         <span *ngIf="campoNoEsValido('fk_id_ambito_geografico')" class="form-text text-danger">
                           Ingrese numero mejoras</span>
                       </div>
@@ -354,7 +354,7 @@
             </div>
           </div> -->
           <div class="mb-5 mt-5 row">
-            <button class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
+            <button *ngIf="id_rol === 5" class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
 
             <button (click)="Volver()" [routerLink]="['../todas-evidencias']"
               class="btn btn-danger col-md-4 offset-md-1" type="text">Cancelar</button>

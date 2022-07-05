@@ -71,10 +71,8 @@
                     <i class="text-danger me-2 fs-3 fa-solid fa-user-xmark"></i>
                   </td>
                   <td>
-                    <i [routerLink]="['../ver-todas-evidencias', item.id_evidencias]"
-                      class="cursor-pointer text-info fs-3 fa fa-solid fa-eye me-2"></i>
-                    <i [routerLink]="['../ver-todas-evidencias', item.id_evidencias]" class="cursor-pointer text-primary fs-3 fa-solid fa-pen-to-square"></i>
-                    <i (click)="borrarUnidades(item.id_evidencias)" class="cursor-pointer text-primary fs-3 fa fa-solid text-danger fa-trash p-2"></i>
+                    <i [routerLink]="['../ver-todas-evidencias', item.id_evidencias]" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
+                    
                   </td>
                 </tr>
               </tbody>
