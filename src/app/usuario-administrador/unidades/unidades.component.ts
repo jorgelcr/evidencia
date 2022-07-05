@@ -137,6 +137,7 @@ export class ModalUnidades1 implements OnInit{
 ngOnInit(): void {
   
   this.cargarUnidadModal();
+
 }
               
 
@@ -174,7 +175,10 @@ if(!this.data.id_unidad){
     this.router.navigate(['usuario-administrador/unidades']);
   
     Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-    this.miFormulario.reset();
+    /* this.miFormulario.reset(); */
+    this.miFormulario.reset({
+      unidad_defecto:true
+    })
       
   },error: error => {
     Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');

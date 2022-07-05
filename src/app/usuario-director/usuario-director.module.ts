@@ -8,7 +8,8 @@ import { DirectorRoutingModule } from './director-routing.module';
 import { MenusModule } from '../menus/menus.module';
 import { CrearEvidenciasComponent } from './crear-evidencias/crear-evidencias.component';
 import { VerTodasEvidenciasComponent } from './ver-todas-evidencias/ver-todas-evidencias.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,11 @@ import { VerTodasEvidenciasComponent } from './ver-todas-evidencias/ver-todas-ev
   imports: [
     CommonModule,
     DirectorRoutingModule,
-    MenusModule
+    MenusModule,
+    ReactiveFormsModule,
+  ],
+  providers:[
+    DatePipe,
   ]
 })
 export class UsuarioDirectorModule { }

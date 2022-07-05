@@ -123,7 +123,7 @@ export class DialogContentExampleDialog implements OnInit {
   
 
 
-  listaUsuario : Usuario[] = [];
+ /*  listaUsuario : Usuario[] = []; */
   listaUnidad : Unidad[] = [];
   listaRol : any[] = [];
   constructor(public dialog: MatDialog, private fb: FormBuilder , 
@@ -139,15 +139,15 @@ export class DialogContentExampleDialog implements OnInit {
     apellidos_usuario : [data.apellidos_usuario, [Validators.required, , Validators.minLength(3)]],
     correo_usuario    : [data.correo_usuario, [Validators.required, , Validators.minLength(3)]],
     contrasena        : [data.contrasena, [Validators.required, , Validators.minLength(3)]],
-    estado            : [data.estado, /* Validators.required */],
+    estado            : [true, Validators.required, /* Validators.required */],
     fk_id_unidad      : [data.fk_id_unidad, Validators.required],
     fk_id_rol         : [data.fk_id_rol, Validators.required],
   })
 
    }
 
- 
  ngOnInit(): void {
+
    this.cargarUsuarioModal();
    this.cargarUnidad();
    this.cargarRol();
@@ -186,7 +186,10 @@ export class DialogContentExampleDialog implements OnInit {
     console.log("sdasdfghjklñskasskdksjdksdjskld")
     
       Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-      this.formularioUsuario.reset();
+      /*  this.formularioUsuario.reset(); */
+      this.formularioUsuario.reset({
+        estado: true
+      })
         
     },error: error => {
       Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');

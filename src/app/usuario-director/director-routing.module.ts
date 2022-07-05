@@ -18,6 +18,8 @@ const routes: Routes = [
       {path: 'crear-evidencia', component: CrearEvidenciasComponent },
       {path: 'mis-evidencias', component: VerEvidenciasComponent },
       {path: 'todas-evidencias', component: VerTodasEvidenciasComponent },
+      {path: 'ver-todas-evidencias/:id', component: CrearEvidenciasComponent },
+      {path: 'ver-mis-evidencias/:id', component: CrearEvidenciasComponent },
       {path: '**', redirectTo: 'home'}
     ]
   }       

@@ -174,7 +174,10 @@ if(!this.data.id_ambito_geografico){
   console.log("sdasdfghjklñskasskdksjdksdjskld")
   
     Swal.fire('exitosamente', "Datos guardados satisfactoriamente", 'success');
-    this.formularioAmbitoGeografico.reset();
+    /* this.formularioAmbitoGeografico.reset(); */
+    this.formularioAmbitoGeografico.reset({
+      estado_ambito_geografico: true
+    })
       
   },error: error => {
     Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');

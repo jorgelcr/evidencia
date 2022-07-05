@@ -37,6 +37,7 @@
                     <th scope="col">Apellidos</th>
                     <th scope="col">Email</th>
                     <th scope="col">Unidad</th>
+                    <th scope="col">Rol</th>
                     <th scope="col">Acción</th>
                   </tr>
                 </thead>
@@ -47,6 +48,7 @@
                     <td>{{item.apellidos_usuario | titlecase}}</td>
                     <td>{{item.correo_usuario | titlecase}}</td>
                     <td>{{item.nombre_unidad | titlecase}}</td>
+                    <td>{{item.nombre_rol | titlecase}}</td>
                     <td>
                       <i (click)="openDialog(item)" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye p-2" mat-button data-bs-target="#staticBackdrop2"></i>
                       <i (click)="borrarUsuario(item.rut)" class="cursor-pointer text-primary fs-3 fa fa-solid text-danger fa-trash p-2"></i>
