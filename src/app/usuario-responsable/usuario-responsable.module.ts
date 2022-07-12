@@ -9,6 +9,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { CrearEvidenciaComponent } from './crear-evidencia/crear-evidencia.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { GraficosComponent } from './graficos/graficos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,7 +27,8 @@ import { GraficosComponent } from './graficos/graficos.component';
     CommonModule,
     ResponsableRoutingModule,
     MenusModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule,
   ]
 })
 export class UsuarioResponsableModule { }

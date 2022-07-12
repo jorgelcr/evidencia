@@ -22,99 +22,105 @@
         <h4 class="text-center">Identificacion de Registros</h4>
       </div>
 
+      <form [formGroup]="FormularioResponsable" >
+
+        <div class="container">
+          <div class="mb-3 row">
+            <div class="col-sm-6">
+
+ 
+                <div class="row g-3">
+
+                  <div class="">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">N° folio</label>
+                      <div class="col-sm-8 ">
+                        <!--                     <input formControlName="numero_folio" class="fs-6 border-0 form-control-lg col-12" type="text"
+                          readonly> -->
+                        <span class="fs-5">{{obtenerNombreFolio}}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Usuario</label>
+                      <div class="col-sm-8">
+                        <input formControlName="rut" class="col-12 border" type="text">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Unidad</label>
+                      <div class="col-sm-8">
+                        <select formControlName="fk_id_unidad" [value]="formResponsabledisable()" class="form-select form-select-sm"
+                        aria-label=".form-select-sm example">
+                        <option *ngFor="let item of listaUnidad" [value]="item.id_unidad | number">
+                          {{item.nombre_unidad}}</option>
+                      </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Tipo Registro</label>
+                      <div class="col-sm-8">
+                        <select formControlName="fk_id_registros" class="form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listatiposRegistros" [value]="item.id_registros | number">
+                            {{item.nombre_registros}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Ambito</label>
+                      <div class="col-sm-8">
+                        <select formControlName="fk_id_ambito_academico" class="form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaAmbitoAcademico" [value]="item.id_ambito_academico | number">
+                            {{item.nombre_ambito_academico}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="form-group row">
+                      <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Criterio</label>
+                      <div class="col-sm-8">
+                        <select formControlName="fk_id_criterios" class="form-select form-select-sm"
+                          aria-label=".form-select-sm example">
+                          <option *ngFor="let item of listaCriterio" [value]="item.id_criterios | number">
+                            {{item.nombre_criterios}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
 
 
-      <div class="container">
-        <div class="mb-3 row">
-          <div class="col-sm-6">
+            <div class="col-sm-6">
 
-            <h4 class="fw-bold mb-3">N Folio</h4>
-            <form class="needs-validation" novalidate>
               <div class="row g-3">
 
-                <div class="mb-3">
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Usuario</label>
-                    <div class="col-sm-8">
-                      <input class="col-12 border" type="text"  >
-                    </div>
-                  </div>
+                <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">fecha Actual</label>
+                <div class="col-sm-8" *ngIf="estadoEvidencia == true">
+                  <!--   <input type="text" formControlName="fecha_evidencia" class="fs-6 border-0 form-control-lg col-12" readonly> -->
+                  <span class="fs-5">{{ fechaActual | date: 'shortDate' }}</span>
                 </div>
-
-                <div class="mb-3">
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Unidad</label>
-                    <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Tipo Registro</label>
-                    <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Ambito</label>
-                    <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mb-3">
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Criterio</label>
-                    <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-
-            </form>
-          </div>
-
-
-          <div class="col-sm-6">
-
-            <h4 class="fw-bold mb-3">Fecha Actual</h4>
-            <form class="needs-validation" novalidate>
-              <div class="row g-3">
-
                 <div class="mb-3">
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Email</label>
                     <div class="col-sm-8">
-                      <input class="col-12 border" type="text"  >
+                      <input formControlName="correo_usuario" class="col-12 border" type="text">
                     </div>
                   </div>
                 </div>
@@ -123,11 +129,9 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Proceso</label>
                     <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select formControlName="fk_id_procesos" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option *ngFor="let item of listaProcesos" [value]="item.id_procesos | number">
+                          {{item.nombre_procesos}}</option>
                       </select>
                     </div>
                   </div>
@@ -137,7 +141,7 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">N° Plan de Mejoras</label>
                     <div class="col-sm-8">
-                      <input class="col-12 border" type="text"  >
+                      <input formControlName="numero_mejoras" class="col-12 " type="text">
                     </div>
                   </div>
                 </div>
@@ -146,11 +150,9 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Ambito Geografico</label>
                     <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select formControlName="fk_id_ambito_geografico" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option *ngFor="let item of listaAmbitoGeografico" [value]="item.id_ambito_geografico | number">
+                          {{item.nombre_ambito_geografico}}</option>
                       </select>
                     </div>
                   </div>
@@ -160,90 +162,89 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">Debilidad</label>
                     <div class="col-sm-8">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected></option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select formControlName="fk_id_debilidades" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option *ngFor="let item of listaDebilidad" [value]="item.id_debilidades | number">
+                          {{item.nombre_debilidades}}</option>
                       </select>
                     </div>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Descripcion</label>
-          <div class="col-sm-9">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Descripcion</label>
+            <div class="col-sm-9">
+              <textarea formControlName="descripcion" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Resultado</label>
-          <div class="col-sm-9">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Resultado</label>
+            <div class="col-sm-9">
+              <textarea formControlName="resultado" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Almacenamiento</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Almacenamiento</label>
+            <div class="col-sm-9">
+              <input formControlName="almacenamiento" type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Unidades y/o Personas Relacionadas a la
-            evidencia</label>
-          <div class="col-sm-9">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Unidades y/o Personas Relacionadas a la
+              evidencia</label>
+            <div class="col-sm-9">
+              <textarea formControlName="unidades_personas_evidencias" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Palabra clave</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Palabra clave</label>
+            <div class="col-sm-9">
+              <input formControlName="palabra_clave" type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Nombre corto evidencia</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Nombre corto evidencia</label>
+            <div class="col-sm-9">
+              <input formControlName="nombre_corto_evidencia" type="text" class="form-control" id="firstName" placeholder="" value="" required>
+            </div>
           </div>
-        </div>
-        <!-- INICIO NOMBRE Y CORREO DEL RESPONSABLE -->
-        <div class="row">
-          <div class="mb-3 col-6">
-            <div class="form-group row">
-              <label for="inputEmail3" class="fw-bold col-sm-6 col-form-label"> Responsable</label>
-              <div class="col-sm-6"> 
-                <input class="col-12 border" type="text">
+          <!-- INICIO NOMBRE Y CORREO DEL RESPONSABLE -->
+          <div class="row">
+            <div class="mb-3 col-6">
+              <div class="form-group row">
+                <label for="inputEmail3" class="fw-bold col-sm-6 col-form-label"> Responsable</label>
+                <div class="col-sm-6">
+                  <input formControlName="rut" class="col-12 border" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3 col-6">
+              <div class="form-group row">
+                <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-8">
+                  <input formControlName="correo_usuario" class="col-12 border" type="text">
+                </div>
               </div>
             </div>
           </div>
-          <div class="mb-3 col-6">
-            <div class="form-group row">
-              <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Email</label>
-              <div class="col-sm-8">
-                <input class="col-12 border" type="text">
-              </div>
+          <!-- INICIO NOMBRE Y CORREO DEL RESPONSABLE -->
+          <div class="mb-3 row">
+            <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Observaciones Responsable</label>
+            <div class="col-sm-9">
+              <textarea formControlName="observaciones_responsable" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <span *ngIf="campoNoEsValido('observaciones_responsable')" class="form-text text-danger">
+                Nombre debe tener 3 letras</span>
             </div>
           </div>
-        </div>
-        <!-- INICIO NOMBRE Y CORREO DEL RESPONSABLE -->
-        <div class="mb-3 row">
-          <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Observaciones Responsable</label>
-          <div class="col-sm-9">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-        </div>
 
-        <div class="mb-3 row mt-4">
-          <div class="col-sm-6">
+          <div class="mb-3 row mt-4">
+            <!--  <div class="col-sm-6">
 
             <h4 class="fw-bold mb-5">CANTIDAD ASISTENTES INTERNOS</h4>
             <form class="needs-validation" novalidate>
@@ -316,14 +317,17 @@
                 </div>
               </div>
             </form>
-          </div>
-          <div class="mb-5 mt-5 row">
-            <button class="btn btn-primary text-center col-md-3" type="submit">Aprobar Por Responsable</button>
-            <button class="btn btn-danger float-end col-md-3 offset-md-6" type="submit">Rechazar Por Responsable</button>
-          
+          </div> -->
+            <div class="mb-5 mt-5 row">
+              <button (click)="guardar()" class="btn btn-primary text-center col-md-3" type="submit">Aprobar Por Responsable</button>
+              
+              <button (click)="rechazara()" class="btn btn-danger float-end col-md-3 offset-md-6" >Rechazar Por
+                Responsable</button>
+
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 

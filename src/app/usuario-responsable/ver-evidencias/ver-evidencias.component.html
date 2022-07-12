@@ -9,21 +9,21 @@
             <div class="col-md-6 mb-2">
               <input class="fs-5 col-md-9 border-0 border-bottom" type="text" placeholder="Buscar por codigo">
             </div>
-              <div class="col-auto mt-2">
-                <span class="fs-6"><strong>Filtro Por Estados: </strong> </span>
-              </div>
-                <div class="col-auto mb-1">
-                  <form action="/action_page.php" >
-                    <select class="estado" mat-button id="cars" name="cars">
-                      <option value="volvo">En Espera</option>
-                      <option value="saab">Aprobada</option>
-                      <option value="fiat">Rechazada</option>
-                    </select>
-                  </form>
-              </div>
-              
+            <div class="col-auto mt-2">
+              <span class="fs-6"><strong>Filtro Por Estados: </strong> </span>
+            </div>
+            <div class="col-auto mb-1">
+              <form action="/action_page.php">
+                <select class="estado" mat-button id="cars" name="cars">
+                  <option value="volvo">En Espera</option>
+                  <option value="saab">Aprobada</option>
+                  <option value="fiat">Rechazada</option>
+                </select>
+              </form>
+            </div>
 
-           
+
+
           </div>
           <div class="my-custom-scrollbar ">
             <table class="table table-bordered table-hover ">
@@ -39,169 +39,29 @@
                 </tr>
               </thead>
               <tbody class=" text-center align-middle">
-                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
+                <tr *ngFor="let item of listaEvidenciasResponsable">
+                  <th scope="row">{{item.numero_folio}}</th>
+                  <td>{{item.nombre_procesos}}</td>
+                  <td>{{item.nombre_registros}}</td>
+                  <td>{{item.nombre_debilidades}}</td>
+                  <td>{{item.nombre_criterios}}</td>
+                  <td *ngIf="item.estado_evidencia_responsable == 0 && item.revisado_reponsable == false  "
+                    class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
                       placeholder="En espera" readonly>
+                  </td>
+
+                  <td *ngIf="item.estado_evidencia_responsable == 1 && item.revisado_reponsable == true  "
+                    class="col-12 col-md-2">
                     <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
+                  </td>
+
+                  <td *ngIf="item.estado_evidencia_responsable == 2 && item.revisado_reponsable == true  "
+                    class="col-12 col-md-2">
                     <i class="text-danger fs-4 fa-regular fa-x"></i>
                   </td>
                   <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
-                  </td>
-                </tr>
-                                <tr>
-                  <th scope="row">1</th>
-                  <td>1</td>
-                  <td>proceso 1</td>
-                  <td>debilidad 1</td>
-                  <td>criterio 1</td>
-                  <td class="col-12 col-md-2"> <input class="w-input text-center me-2 col-7 rounded border-0 bg-warning  "
-                      placeholder="En espera" readonly>
-                    <i class="text-success me-2 fs-3 fa-solid fa-check"></i>
-                    <i class="text-danger fs-4 fa-regular fa-x"></i>
-                  </td>
-                  <td>
-                    <i [routerLink]="['../administrar-evidencia']" class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
+                    <i [routerLink]="['../administrar-evidencia', item.numero_folio]"
+                      class="cursor-pointer text-primary fs-3 fa fa-solid fa-eye"></i>
                   </td>
                 </tr>
               </tbody>

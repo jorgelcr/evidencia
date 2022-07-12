@@ -122,7 +122,6 @@ export class CrearEvidenciasComponent implements OnInit {
     
   }
   
-
   obtenerGetUsuario(){
     this.UsuarioNormalService.obtenerGetUsuario('HPDROH@GMAIL.COM','12345').subscribe(data =>{
       console.log(data); 
