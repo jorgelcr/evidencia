@@ -264,7 +264,7 @@ export class CrearEvidenciasComponent implements OnInit {
 
           this.obtenerNombreFolio = data[0].numero_folio,
           this.fechaActual        = data[0].fecha_evidencia,
-           this.id_rol = data[0].id_rol
+          this.id_rol = data[0].id_rol
           this.FormularioDirector.patchValue({
             numero_folio                 : data[0].numero_folio,
             fecha_evidencia              : data[0].fecha_evidencia,
