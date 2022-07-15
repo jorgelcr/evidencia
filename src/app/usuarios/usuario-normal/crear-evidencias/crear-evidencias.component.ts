@@ -34,24 +34,46 @@ export class CrearEvidenciasComponent implements OnInit {
   
 
   constructor(private fb: FormBuilder, public dialog: MatDialog, private UsuarioNormalService: UsuarioNormalService,private aRouter: ActivatedRoute, private router: Router) {
+
+    function letras_aleatorias(largoCadena: number, letra: string) {
+
+      let text = "";
+      for (let i = 0; i < largoCadena; i++) {
+        text += letra.charAt(Math.floor(Math.random() * letra.length));
+        if (i === 4 || i === 7) {
+          let text1 = "-"
+          text = text.concat(text1.toString());
+          /*  console.log(text," :el texto es: ") */
+
+        }
+      }
+      /*  console.log("ssssss: ",text) */
+      return text;
+    }
+    let rangoLetras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const largoCadena = 10;
+    letras_aleatorias(largoCadena, rangoLetras);
+
       this.formularioEvidencias = this.fb.group({
-        nombre_cliente          : ['pedro', Validators.required],
-        correo_usuario          : ['hpdroh@gmail.com', Validators.required],
-        fk_id_usuario           : ['39', Validators.required],
-        fk_id_debilidades       : ['', Validators.required],
-        fk_id_unidad            : ['', Validators.required],
-        fk_id_criterios         : ['', Validators.required], 
-        fk_id_registros         : ['', Validators.required],
-        fk_id_procesos          : ['', Validators.required],
-        fk_id_estado            : ['1', Validators.required],
-        fk_id_ambito_academico  : ['', Validators.required],
-        fk_id_ambito_geografico : ['', Validators.required],
-        descripcion             : ['', Validators.required],
-        resultado               : ['', Validators.required],
-        almacenamiento          : ['', Validators.required],
-        unidadpersonasevid      : ['', Validators.required],
-        palabraclave            : ['', Validators.required],
-        nomcortoevidencia       : ['', Validators.required],
+        nombre_cliente                : ['pedro', Validators.required],
+        e_correo_usuario              : ['hpdroh@gmail.com', Validators.required],
+        fk_id_usuario                 : ['41', Validators.required],
+        fk_id_debilidades             : ['', Validators.required],
+        fk_id_unidad                  : ['', Validators.required],
+        fk_id_criterios               : ['', Validators.required], 
+        fk_id_registros               : ['', Validators.required],
+        fk_id_procesos                : ['', Validators.required],
+        fk_id_estado                  : ['1', Validators.required],
+        fk_id_ambito_academico        : ['', Validators.required],
+        fk_id_ambito_geografico       : ['', Validators.required],
+        numero_folio                  : letras_aleatorias(largoCadena, rangoLetras),
+        numero_mejoras                : ['', Validators.required],
+        descripcion                   : ['', Validators.required],
+        resultado                     : ['', Validators.required],
+        almacenamiento                : ['', Validators.required],
+        unidades_personas_evidencias  : ['', Validators.required],
+        palabra_clave                 : ['', Validators.required],
+        nombre_corto_evidencia        : ['', Validators.required],
       })
     }
     
@@ -90,7 +112,7 @@ export class CrearEvidenciasComponent implements OnInit {
 
     const EVIDENCIAS: GuardarEvidencias = {
       nombre_cliente: this.formularioEvidencias.get('nombre_cliente')?.value,
-      correo_usuario: this.formularioEvidencias.get('correo_usuario')?.value,
+      e_correo_usuario: this.formularioEvidencias.get('e_correo_usuario')?.value,
       fk_id_usuario: this.formularioEvidencias.get('fk_id_usuario')?.value,
       fk_id_debilidades: this.formularioEvidencias.get('fk_id_debilidades')?.value,
       fk_id_unidad: this.formularioEvidencias.get('fk_id_unidad')?.value,
@@ -100,12 +122,14 @@ export class CrearEvidenciasComponent implements OnInit {
       fk_id_estado: this.formularioEvidencias.get('fk_id_estado')?.value,
       fk_id_ambito_academico: this.formularioEvidencias.get('fk_id_ambito_academico')?.value,
       fk_id_ambito_geografico: this.formularioEvidencias.get('fk_id_ambito_geografico')?.value,
+      numero_folio: this.formularioEvidencias.get('numero_folio')?.value,
+      numero_mejoras: this.formularioEvidencias.get('numero_mejoras')?.value,
       descripcion: this.formularioEvidencias.get('descripcion')?.value,
       resultado: this.formularioEvidencias.get('resultado')?.value,
       almacenamiento: this.formularioEvidencias.get('almacenamiento')?.value,
-      unidadpersonasevid: this.formularioEvidencias.get('unidadpersonasevid')?.value,
-      palabraclave: this.formularioEvidencias.get('palabraclave')?.value,
-      nomcortoevidencia: this.formularioEvidencias.get('nomcortoevidencia')?.value,
+      unidades_personas_evidencias: this.formularioEvidencias.get('unidades_personas_evidencias')?.value,
+      palabra_clave: this.formularioEvidencias.get('palabra_clave')?.value,
+      nombre_corto_evidencia: this.formularioEvidencias.get('nombre_corto_evidencia')?.value,
     }
 
     console.log(EVIDENCIAS);
