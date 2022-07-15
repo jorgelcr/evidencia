@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './paginas/login/login.component';
 import { RegistroComponent } from './paginas/registro/registro.component';
 import { AutentificacionRoutingModule } from './autentificacion-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { AutentificacionRoutingModule } from './autentificacion-routing.module';
   ],
   imports: [
     CommonModule,
-    AutentificacionRoutingModule
+    AutentificacionRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AutentificacionModule { }

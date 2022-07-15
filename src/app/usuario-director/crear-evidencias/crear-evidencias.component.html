@@ -32,9 +32,9 @@
                 <div class="form-group row">
                   <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">N° folio</label>
                   <div class="col-sm-8 ">
-<!--                     <input formControlName="numero_folio" class="fs-6 border-0 form-control-lg col-12" type="text"
+                    <!--                     <input formControlName="numero_folio" class="fs-6 border-0 form-control-lg col-12" type="text"
                       readonly> -->
-                      <span class="fs-5">{{obtenerNombreFolio}}</span>
+                    <span class="fs-5">{{obtenerNombreFolio}}</span>
                   </div>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                   <div class="mb-3">
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-3 col-form-label">Tipo Registro</label>
-                      <div  class="col-sm-8">
+                      <div class="col-sm-8">
                         <select formControlName="fk_id_registros"
                           class="border-dark border-dark form-select form-select-sm"
                           aria-label=".form-select-sm example">
@@ -90,7 +90,7 @@
                         <select formControlName="fk_id_ambito_academico"
                           class="border-dark border-dark form-select form-select-sm"
                           aria-label=".form-select-sm example">
-                          <option *ngFor="let item of listaAmbitoAcademico" [value]="item.id_ambito_academico | number" >
+                          <option *ngFor="let item of listaAmbitoAcademico" [value]="item.id_ambito_academico | number">
                             {{item.nombre_ambito_academico}}</option>
                         </select>
                         <span *ngIf="campoNoEsValido('fk_id_ambito_academico')" class="form-text text-danger">
@@ -129,8 +129,8 @@
               <div class="form-group row ">
                 <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">fecha Actual</label>
                 <div class="col-sm-8" *ngIf="estadoEvidencia == true">
-                <!--   <input type="text" formControlName="fecha_evidencia" class="fs-6 border-0 form-control-lg col-12" readonly> -->
-                  <span class="fs-5" >{{ fechaActual | date: 'shortDate' }}</span>
+                  <!--   <input type="text" formControlName="fecha_evidencia" class="fs-6 border-0 form-control-lg col-12" readonly> -->
+                  <span class="fs-5">{{ fechaActual | date: 'shortDate' }}</span>
                 </div>
 
                 <div class="col-sm-8" *ngIf="estadoEvidencia == false">
@@ -170,7 +170,7 @@
                     <div class="form-group row">
                       <label for="inputEmail3" class="fw-bold col-sm-4 col-form-label">N° Plan de Mejoras</label>
                       <div class="col-sm-8">
-                        <input formControlName="numero_mejoras" class="col-12 " type="text" >
+                        <input formControlName="numero_mejoras" class="col-12 " type="text">
                         <span *ngIf="campoNoEsValido('fk_id_ambito_geografico')" class="form-text text-danger">
                           Ingrese numero mejoras</span>
                       </div>
@@ -216,8 +216,8 @@
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Descripcion</label>
             <div class="col-sm-9">
-              <textarea formControlName="descripcion" autocomplete="off" class="border-dark form-control" id="exampleFormControlTextarea1"
-                rows="3"></textarea>
+              <textarea formControlName="descripcion" autocomplete="off" class="border-dark form-control"
+                id="exampleFormControlTextarea1" rows="3"></textarea>
               <span *ngIf="campoNoEsValido('descripcion')" class="form-text text-danger">
                 Ingrese alguna Descripcion</span>
             </div>
@@ -226,8 +226,8 @@
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Resultado</label>
             <div class="col-sm-9">
-              <textarea formControlName="resultado" autocomplete="off" class="border-dark form-control" id="exampleFormControlTextarea1"
-                rows="3"></textarea>
+              <textarea formControlName="resultado" autocomplete="off" class="border-dark form-control"
+                id="exampleFormControlTextarea1" rows="3"></textarea>
               <span *ngIf="campoNoEsValido('resultado')" class="form-text text-danger">
                 Ingrese algun Resultado</span>
             </div>
@@ -237,8 +237,8 @@
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Almacenamiento</label>
             <div class="col-sm-9">
-              <input formControlName="almacenamiento" autocomplete="off" type="text" class="border-dark form-control" id="firstName"
-                placeholder="" value="" required>
+              <input formControlName="almacenamiento" autocomplete="off" type="text" class="border-dark form-control"
+                id="firstName" placeholder="" value="" required>
               <span *ngIf="campoNoEsValido('almacenamiento')" class="form-text text-danger">
                 Ingrese algun Almacenamiento</span>
             </div>
@@ -248,8 +248,8 @@
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Unidades y/o Personas Relacionadas a la
               evidencia</label>
             <div class="col-sm-9">
-              <textarea formControlName="unidades_personas_evidencias" autocomplete="off" class="border-dark form-control"
-                id="exampleFormControlTextarea1" rows="3"></textarea>
+              <textarea formControlName="unidades_personas_evidencias" autocomplete="off"
+                class="border-dark form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               <span *ngIf="campoNoEsValido('unidades_personas_evidencias')" class="form-text text-danger">
                 Ingrese alguna Unidades y/o Personas Relacionadas a la
                 evidencia</span>
@@ -259,8 +259,8 @@
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Palabra clave</label>
             <div class="col-sm-9">
-              <input formControlName="palabra_clave" type="text" autocomplete="off" class="border-dark form-control" id="firstName"
-                placeholder="" value="" required>
+              <input formControlName="palabra_clave" type="text" autocomplete="off" class="border-dark form-control"
+                id="firstName" placeholder="" value="" required>
               <span *ngIf="campoNoEsValido('palabra_clave')" class="form-text text-danger">
                 Ingrese alguna Palabra clave</span>
             </div>
@@ -269,8 +269,8 @@
           <div class="mb-3 row">
             <label for="inputUnidad" class="fw-bold col-sm-3 col-form-label">Nombre corto evidencia</label>
             <div class="col-sm-9">
-              <input formControlName="nombre_corto_evidencia" autocomplete="off" type="text" class="border-dark form-control"
-                id="firstName" placeholder="" value="" required>
+              <input formControlName="nombre_corto_evidencia" autocomplete="off" type="text"
+                class="border-dark form-control" id="firstName" placeholder="" value="" required>
               <span *ngIf="campoNoEsValido('nombre_corto_evidencia')" class="form-text text-danger">
                 Ingrese algun nombre corto</span>
             </div>
@@ -354,7 +354,8 @@
             </div>
           </div> -->
           <div class="mb-5 mt-5 row">
-            <button *ngIf="id_rol === 5" class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
+            <button *ngIf="id_rol === 5 || id_rol !== undefined || id_rol !== null"
+              class="btn btn-primary col-md-4 offset-md-1" type="submit">Enviar</button>
 
             <button (click)="Volver()" [routerLink]="['../todas-evidencias']"
               class="btn btn-danger col-md-4 offset-md-1" type="text">Cancelar</button>

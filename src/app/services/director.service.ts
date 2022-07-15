@@ -42,6 +42,7 @@ export class DirectorService {
     const url = `${ this.urlBackend}/director/tiporegistro`;
     return this.http.get<tipoRegistros[]>(url)
   }
+  
   obtenerAmbitoAcademico(): Observable<ambitoAcademico[]>{
   
     const url = `${ this.urlBackend}/director/ambitoacademico`;

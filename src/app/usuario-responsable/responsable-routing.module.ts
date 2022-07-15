@@ -15,6 +15,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent },
       {path: 'ver-evidencias', component: VerEvidenciasComponent },
       {path: 'administrar-evidencia', component: CrearEvidenciaComponent },
+      {path: 'administrar-evidencia/:id', component: CrearEvidenciaComponent },
       {path: 'estadisticas', component: EstadisticasComponent },
       {path: 'graficos', component: GraficosComponent },
       {path: '**', redirectTo: 'home'}
