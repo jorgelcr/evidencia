@@ -8,9 +8,11 @@ import { Debilidad } from 'src/app/interfaces/administrador/debilidad.interface'
 import { Procesos } from 'src/app/interfaces/administrador/procesos.interface';
 import { tipoRegistros } from 'src/app/interfaces/administrador/tiposRegistros.intefrace';
 import { Unidad } from 'src/app/interfaces/administrador/unidad.inteface';
+import { Usuario } from 'src/app/models/usuario.model';
 import { ResponsableService } from 'src/app/services/responsable.service';
 import Swal from 'sweetalert2';
 import { evidenciaResponsable } from '../../interfaces/responsable/evidenciaResponsable.interface';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-crear-evidencia',
@@ -39,9 +41,11 @@ export class CrearEvidenciaComponent implements OnInit {
   fechaActual? : Date ;
   obtenerNombreFolio: string = ''; 
    id_rol : number = 0;
-   
+ public borrar: number = 1; 
+ public borrar2: number = 2; 
+  public usuario!  : Usuario  ; 
   constructor(private fb: FormBuilder, private responsableService: ResponsableService,
-    private router: Router, private activatedRouter: ActivatedRoute) {
+              private usuarioService: LoginService,  private router: Router, private activatedRouter: ActivatedRoute) {
 
 
     this.FormularioResponsable = this.fb.group({
@@ -67,15 +71,27 @@ export class CrearEvidenciaComponent implements OnInit {
       rut                           : [{value: '', disabled: true}, Validators.required],
       correo_usuario                : [{value: '', disabled: true}, Validators.required],
       observaciones_responsable                : [{value: '', disabled: false}, [Validators.required, Validators.minLength(3)]],
-     /*  id_rol :['', {disabled: this.id_rol === 5}] */
+      fk_id_usuario_responsable                : [{value: '', disabled: false}, Validators.required],
+      correo_conectado               : [{value: '', disabled: true}, Validators.required],
+      /*  id_rol :['', {disabled: this.id_rol === 5}] */
     });
-
+    
     this.id = this.activatedRouter.snapshot.paramMap.get('id')!;
-console.log("AAAAAAAAAAAAAAAAAA", this.id )
+//console.log("AAAAAAAAAAAAAAAAAA", this.id )
 
+    this.usuario = usuarioService.usuario!
+console.log("EL USUARIO ES: ",this.usuario)
   }
 
   ngOnInit(): void {
+
+
+    this.FormularioResponsable.patchValue({
+     
+      fk_id_usuario_responsable: this.usuario.rut, 
+      correo_conectado: this.usuario.correo_usuario 
+    })
+    
 
     this.mostrarEvidenciasIdResponsable();
     this.obtenerUnidad();
@@ -106,8 +122,14 @@ guardar(){
     this.responsableService.actualizarAprobarEvidenciaResponsable(this.id, this.FormularioResponsable.value)
       .subscribe({
         next: data => {
+          console.log( this.usuario.id_usuarios)
           Swal.fire(`La Evidencia ${this.id} Fue Aprobada`, "Evidencia Aprobada Con EXITO ", 'success');
           this.router.navigate(['usuario-responsable/ver-evidencias']);
+                   
+          this.FormularioResponsable.reset({
+   
+            fk_id_usuario_responsable: this.usuario.id_usuarios
+          })
          /*  this.estadoEvidenciaActualizar = true; */
         }, error: error => {
           Swal.fire('Error', "Error al APROBAR LA EVIDENCIA", 'error');
@@ -136,6 +158,10 @@ console.log("asdfghjklñ");
           Swal.fire('Evidencia RECHAZADA', "Evidencia RECHAZADA con EXITO ", 'info');
           console.log("'Evidencia RECHAZADA', Evidencia RECHAZADA con EXITO , 'info'")
           this.router.navigate(['usuario-responsable/ver-evidencias']);
+          this.FormularioResponsable.reset({
+   
+            fk_id_usuario_responsable: this.usuario.id_usuarios
+          })
          /*  this.estadoEvidenciaActualizar = true; */
         }, error: error => {
           Swal.fire('Error', "Error al RECHAZAR LA EVIDENCIA", 'error');

@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
     this.loginServise.login(this.FormularioLogin.value).subscribe(
       {
         next: (resp: any) => {
-          if ( resp.resultado[0].login == 1){
+          
+          if ( resp.resultado[0].login == 1 && resp.elusuarioes[0].fk_id_rol == 3){
               this.router.navigate(['usuario-responsable/ver-evidencias'])
               /* this.router.navigate(['usuario-director/mis-evidencias']); */
               /* console.log("sdasdfghjklñskasskdksjdksdjskld", resp[0].login) */
@@ -43,7 +44,6 @@ export class LoginComponent implements OnInit {
               Swal.fire('exitosamente', "USER AND PASSWORD SUCCESS", 'success');
           }
          
-
 
         }, error: error => {
           Swal.fire('Error', "Error al ingresar, el codigo debe ser UNICO", 'error');

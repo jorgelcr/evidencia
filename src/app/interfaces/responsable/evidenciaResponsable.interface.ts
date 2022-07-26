@@ -21,5 +21,7 @@ export interface evidenciaResponsable {
     estado_evidencia_dac: number;
     revisado_reponsable: boolean;
     revisado_dac: boolean;
+    fk_id_usuario_responsable: string ;
+   /*  nombres_usuario: string; */
 
 }
